@@ -1,7 +1,8 @@
 package com.graduation.client;
 
-import java.util.Scanner;
 import com.graduation.utils.Prompter;
+
+import java.util.Scanner;
 
 public class GraduationDayApplicationClient {
     public static void main(String[] args) {
