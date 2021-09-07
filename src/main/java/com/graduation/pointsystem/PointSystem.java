@@ -4,13 +4,11 @@ import com.graduation.client.GameClient;
 import com.graduation.elements.Bully;
 import com.graduation.elements.Player;
 import com.graduation.utils.Grade;
-import com.graduation.utils.Prompter;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class PointSystem {
     public static List<String> getNotSubject() {

@@ -1,10 +1,8 @@
 package com.graduation.elements;
 
 import com.graduation.utils.Grade;
-import com.graduation.utils.Prompter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Player {

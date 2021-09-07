@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b0e304ac-c8c7-41e9-807c-1e4be86d37e3" name="Default Changelist" comment="Merge branch 'dev' of https://github.com/pierregober/graduation-day into hongyiDev&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Graduation_Day-1.0.jar">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graduation_Day-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Graduation_Day-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-day.iml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-day.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/graduation-day/items.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/actions/GameAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/actions/GameAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/actions/GameCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/actions/GameCombat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/client/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/client/GameClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/client/GraduationDayApplicationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/client/GraduationDayApplicationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/client/TitleScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/client/TitleScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/elements/Bully.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/elements/Bully.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/elements/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/elements/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/PointSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/PointSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/QuestionDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/QuestionDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/QuestionTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/QuestionTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/utils/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/utils/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/utils/Prompter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/utils/Prompter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graduation/utils/readMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/utils/readMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/graduation/client/TitleScreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/graduation/client/TitleScreenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/graduation/pointsystem/QuestionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/graduation/pointsystem/QuestionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +46,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="usePluginRegistry" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadAnnotationsAutomatically" value="true" />
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1xHWo6hcWes4S8iQvWXQKlHMqJF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -39,12 +75,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/jackson-core-2.13.0-rc1.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -88,7 +125,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="34bb8994-1a51-4613-b27d-ad4ef5afde22" name="Default Changelist" comment="" />
+      <changelist id="b0e304ac-c8c7-41e9-807c-1e4be86d37e3" name="Default Changelist" comment="Merge branch 'dev' of https://github.com/pierregober/graduation-day into hongyiDev&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Graduation_Day-1.0.jar" />
       <created>1630012665362</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -99,6 +136,9 @@
       <workItem from="1630346315856" duration="5725000" />
       <workItem from="1630359409967" duration="1837000" />
       <workItem from="1630420788388" duration="17624000" />
+      <workItem from="1631049423962" duration="72000" />
+      <workItem from="1631049520610" duration="12000" />
+      <workItem from="1631051082704" duration="6000" />
     </task>
     <servers />
   </component>

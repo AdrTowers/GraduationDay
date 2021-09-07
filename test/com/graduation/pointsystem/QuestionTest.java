@@ -1,10 +1,7 @@
 package com.graduation.pointsystem;
 
 import com.graduation.utils.Grade;
-import com.graduation.utils.Prompter;
 import org.junit.Test;
-
-import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
