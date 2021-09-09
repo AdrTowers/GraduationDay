@@ -2,9 +2,9 @@
 #  Direction                                       ##
 #    NORTH                    Computers %s         ##    Player: %s
 #      ^                          |                ##
-#               History %s  ---- Gym %s            ##    Credit: %s
+#               History %s  ---- Gym %s            ##    Grade: %s
 #                  |              |                ##
-#               Hallway %s --- Geography %s        ##
+#               Hallway %s --- Geography %s        ##    Credit: %s
 #                                 |                ##
 #                              Cafeteria %s        ##
 #                                 |                ##
