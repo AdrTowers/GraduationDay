@@ -6,7 +6,7 @@
 #                      |                           ##
 #                  Cafeteria %s                    ##    Credit: %s
 #                      |                           ##
-#                    Maths %s                      ##
+#                    Maths %s                      ##    Health: %s
 #                      |                           ##
 #   Geography %s  -- History %s                    ##
 #                                                  ##
