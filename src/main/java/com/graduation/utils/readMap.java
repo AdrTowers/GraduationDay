@@ -10,19 +10,18 @@ import java.util.HashMap;
 
 public class readMap {
 
-
     private static String map;
 
-
-    public static String convertedMap(){
+    public static String convertedMap() {
         String newMap = null;
         HashMap<String, String> mapCode = new HashMap<>();
         mapCode.put("Gym", "  ");
         mapCode.put("Geography", "  ");
         mapCode.put("Player", GameClient.getPlayer().getName());
         mapCode.put("Hallway", "  ");
-        mapCode.put("Credit", String.valueOf(GameClient.getPlayer().getCredit()));
+        mapCode.put("Grade", String.valueOf(Player.getGrade()));
         mapCode.put("Maths", "  ");
+        mapCode.put("Credit", String.valueOf(GameClient.getPlayer().getCredit()));
         mapCode.put("Cafeteria", "  ");
         mapCode.put("History", "  ");
         mapCode.put("Computers", "  ");
@@ -31,9 +30,9 @@ public class readMap {
             setupMapPlayerAndItemLocations(mapCode);
 
             newMap = String.format(map, mapCode.get("Gym"), mapCode.get("Geography"),
-                    mapCode.get("Player"), mapCode.get("Hallway"), mapCode.get("Credit"),
+                    mapCode.get("Player") ,mapCode.get("Hallway"), mapCode.get("Grade"),
                     mapCode.get("Maths"), mapCode.get("Cafeteria"), mapCode.get("History"),
-                    mapCode.get("Computers"));
+                    mapCode.get("Credit"), mapCode.get("Computers"));
 
         }
         else if (Player.getGrade() == Grade.SOPHOMORE){
@@ -56,9 +55,9 @@ public class readMap {
             setupMapPlayerAndItemLocations(mapCode);
 
             newMap = String.format(map, mapCode.get("Computers"), mapCode.get("Player"),
-                    mapCode.get("History"),mapCode.get("Gym"), mapCode.get("Credit"),
-                    mapCode.get("Hallway"), mapCode.get("Geography"), mapCode.get("Cafeteria"),
-                    mapCode.get("Maths"));
+                    mapCode.get("History"), mapCode.get("Gym"), mapCode.get("Grade"),
+                    mapCode.get("Hallway"), mapCode.get("Geography"), mapCode.get("Credit"),
+                    mapCode.get("Cafeteria"), mapCode.get("Maths"));
         }
         return newMap;
     }
@@ -78,7 +77,6 @@ public class readMap {
             mapCode.replace("Cafeteria", "\uD83C\uDF93");
         }
     }
-
 
     public static String importTXT(String path) {
         String result = null;
