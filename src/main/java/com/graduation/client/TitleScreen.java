@@ -57,7 +57,7 @@ class TitleScreen {
 
     public static String readTXT(String name) {
         try {
-            banner = Files.readString(Path.of("Banner/" + name + ".txt"), StandardCharsets.UTF_8);
+            banner = Files.readString(Path.of("Banner/" + name + ".txt"));
         } catch (IOException e) {
 
         }
