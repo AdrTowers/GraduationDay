@@ -12,12 +12,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="graduation-day" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="Graduation_Day-1.0" level="project" />
-    <orderEntry type="library" name="graduation-day" level="project" />
-    <orderEntry type="library" name="Graduation_Day-1.0" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="graduation-day" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="Graduation_Day-1.0" level="project" />
+    <orderEntry type="library" exported="" name="graduation-day" level="project" />
+    <orderEntry type="library" exported="" name="Graduation_Day-1.0" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.0-rc2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.0-rc2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0-rc2" level="project" />
