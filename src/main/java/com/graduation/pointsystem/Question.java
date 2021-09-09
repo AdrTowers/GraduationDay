@@ -25,7 +25,7 @@ public class Question {
     public static int cheatCounter = 0;
     private static QuestionDetail currentQuestion = null;
     private static Map<Character, String> currentAnswer = null;
-
+    private static List<String> correct = new ArrayList<>(List.of("Congrats!", "Nice job!", "Correct!", "Way to go!", "Keep it going!", "Nailed it!"));
     public static QuestionDetail getCurrentQuestion() {
         return currentQuestion;
     }
@@ -38,6 +38,10 @@ public class Question {
 
     //public static boolean isHacked = false;
 
+    private String getRandomElement(List<String> list) {
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
+    }
     private List<QuestionDetail> getQuestions(String type, Grade grade) throws JsonProcessingException, ExecutionException, InterruptedException {
         //testing level
         //System.out.println("level=" + difficulties.get(grade));
@@ -113,10 +117,13 @@ public class Question {
                 }
                 chosen = userChoice.charAt(0);
                 if (possible_answers.get(chosen).compareTo(Jsoup.parse(sample.getCorrect_answer()).text()) == 0) {
-                    System.out.println("correct");
+                    System.out.println(getRandomElement(correct));
                     counter += 1;
+                    System.out.println(counter + " out of " + samples.size() + " questions answered correctly.\n");
                 } else {
                     System.out.println("Incorrect: The correct answer is " + sample.getCorrect_answer());
+                    System.out.println(counter + " out of " + samples.size() + " questions answered correctly.\n");
+
                 }
                 counter = counter - cheatCounter;
 //                System.out.println();
