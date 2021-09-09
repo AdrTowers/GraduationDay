@@ -27,55 +27,37 @@ public class readMap {
         mapCode.put("Computers", "  ");
 
         if (Player.getGrade() == Grade.FRESHMAN) {
-            setupMapPlayerAndItemLocations(mapCode);
+            map = importTXT("Banner/map-" + GameClient.getPlayer().getGrade().toString() + ".txt");
+            mapCode.replace(GameClient.getPlayer().getLocation(), "\uD83C\uDF93");
 
             newMap = String.format(map, mapCode.get("Gym"), mapCode.get("Geography"),
                     mapCode.get("Player") ,mapCode.get("Hallway"), mapCode.get("Grade"),
                     mapCode.get("Maths"), mapCode.get("Cafeteria"), mapCode.get("History"),
                     mapCode.get("Credit"), mapCode.get("Computers"));
 
-        }
-        else if (Player.getGrade() == Grade.SOPHOMORE){
-            setupMapPlayerAndItemLocations(mapCode);
-
+        } else if (Player.getGrade() == Grade.SOPHOMORE) {
+            map = importTXT("Banner/map-" + GameClient.getPlayer().getGrade().toString() + ".txt");
+            mapCode.replace(GameClient.getPlayer().getLocation(), "\uD83C\uDF93");
             newMap = String.format(map, mapCode.get("Gym"), mapCode.get("Geography"),
-                    mapCode.get("Player"), mapCode.get("History"),mapCode.get("Hallway"),
-                    mapCode.get("Credit"), mapCode.get("Cafeteria"), mapCode.get("Maths"),
-                    mapCode.get("Computers"));
-        }
-        else if (Player.getGrade() == Grade.JUNIOR){
-            setupMapPlayerAndItemLocations(mapCode);
-
+                    mapCode.get("Player"), mapCode.get("History"), mapCode.get("Hallway"),
+                    mapCode.get("Grade"), mapCode.get("Cafeteria"), mapCode.get("Maths"),
+                    mapCode.get("Credit"), mapCode.get("Computers"));
+        } else if (Player.getGrade() == Grade.JUNIOR) {
+            map = importTXT("Banner/map-" + GameClient.getPlayer().getGrade().toString() + ".txt");
+            mapCode.replace(GameClient.getPlayer().getLocation(), "\uD83C\uDF93");
             newMap = String.format(map, mapCode.get("Computers"), mapCode.get("Player"),
-                    mapCode.get("Hallway"),mapCode.get("Gym"), mapCode.get("Credit"),
-                    mapCode.get("Cafeteria"), mapCode.get("Maths"), mapCode.get("Geography"),
-                    mapCode.get("History"));
-        }
-        else if (Player.getGrade() == Grade.SENIOR){
-            setupMapPlayerAndItemLocations(mapCode);
-
+                    mapCode.get("Hallway"), mapCode.get("Gym"), mapCode.get("Grade"),
+                    mapCode.get("Cafeteria"), mapCode.get("Credit"), mapCode.get("Maths"),
+                    mapCode.get("Geography"), mapCode.get("History"));
+        } else if (Player.getGrade() == Grade.SENIOR) {
+            map = importTXT("Banner/map-" + GameClient.getPlayer().getGrade().toString() + ".txt");
+            mapCode.replace(GameClient.getPlayer().getLocation(), "\uD83C\uDF93");
             newMap = String.format(map, mapCode.get("Computers"), mapCode.get("Player"),
                     mapCode.get("History"), mapCode.get("Gym"), mapCode.get("Grade"),
                     mapCode.get("Hallway"), mapCode.get("Geography"), mapCode.get("Credit"),
                     mapCode.get("Cafeteria"), mapCode.get("Maths"));
         }
         return newMap;
-    }
-
-    private static void setupMapPlayerAndItemLocations(HashMap<String, String> mapCode) {
-        map = importTXT("Banner/map-" + GameClient.getPlayer().getGrade().toString() + ".txt");
-        mapCode.replace(GameClient.getPlayer().getLocation(), "\uD83C\uDF93");
-        mapCode.replace("Cafeteria", "\uD83C\uDF92");
-        mapCode.replace("Hallway", "\uD83C\uDF92");
-        mapCode.replace("Gym", "\uD83C\uDF92");
-
-        if (GameClient.getPlayer().getLocation().equals("Cafeteria")) {
-            mapCode.replace("Cafeteria", "\uD83C\uDF93");
-        } else if (GameClient.getPlayer().getLocation().equals("Hallway")) {
-            mapCode.replace("Cafeteria", "\uD83C\uDF93");
-        } else if (GameClient.getPlayer().getLocation().equals("Gym")) {
-            mapCode.replace("Cafeteria", "\uD83C\uDF93");
-        }
     }
 
     public static String importTXT(String path) {
