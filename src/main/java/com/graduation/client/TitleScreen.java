@@ -1,6 +1,7 @@
 package com.graduation.client;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
@@ -56,7 +57,7 @@ class TitleScreen {
 
     public static String readTXT(String name) {
         try {
-            banner = Files.readString(Path.of("Banner/" + name + ".txt"));
+            banner = Files.readString(Path.of("Banner/" + name + ".txt"), StandardCharsets.UTF_8);
         } catch (IOException e) {
 
         }
