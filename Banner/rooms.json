@@ -2,7 +2,7 @@
   "FRESHMAN": {
     "Computers": {
       "north": "Maths",
-      "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math"
+      "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class"
     },
     "Maths": {
       "east": "Cafeteria",
@@ -91,7 +91,7 @@
     },
     "Computers": {
       "south": "Gym",
-      "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math"
+      "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class"
     },
     "Maths": {
       "south": "History",
