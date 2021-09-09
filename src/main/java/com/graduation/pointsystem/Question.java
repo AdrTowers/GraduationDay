@@ -105,7 +105,7 @@ public class Question {
                 char chosen = ' ';
                 //while user response does not meet certain criteria, keep asking
                 while (userChoice.compareTo("") == 0 || !possible_answers.keySet().contains(userChoice.toUpperCase().charAt(0))) {
-                    System.out.println("You can choose from these options: " + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
+                    System.out.println("You can only choose from these options: " + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
                     userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
                     if (userChoice.matches("QUIT")) {
                         return 0;
