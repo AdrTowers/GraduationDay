@@ -61,14 +61,14 @@ public class PointSystem {
                     player.getSubjectTaken().add(subject);
                     //set the player's GPA
                     player.setCredit(pointSystem.getCumulativeScore(score, player.getSubjectTaken().size()));
-                    System.out.println(player.getCredit());
+                    System.out.println("Your current GPA: " + player.getCredit());
                     //determine if the player has meet the criteria to change its level
                     //from freshman->sophomore->junior->senior
                     //based on a gpa greater than or equal to 2.0 and having taken all the core
                     //subjects i.e. maths,computers,history and geography
                     //reset the taken subject list
                     changePlayerGrade(player);
-                    System.out.println("Grade now: " + player.getGrade());
+                    System.out.println("Grade now: " + player.getGrade() + "\n");
                 }
             }
 
