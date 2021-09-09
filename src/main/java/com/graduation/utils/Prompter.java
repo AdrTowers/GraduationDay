@@ -107,16 +107,9 @@ public class Prompter {
                 }
             } else if (response.matches("help|h")) {
                 System.out.println(
-                        "Use the following actions:" +
-                                "GO [north, south, east, west, up, down]\n" +
-                                "GET/USE [item]\n" +
-                                "Look");
-                if (Question.getCurrentQuestion().getQuestion() != null) {
-                    System.out.println(Jsoup.parse(Question.getCurrentQuestion().getQuestion()).text());
-                    for (Map.Entry<Character, String> options : Question.getCurrentAnswer().entrySet()) {
-                        System.out.println(options.getKey() + ") " + options.getValue());
-                    }
-                }
+                        "\nHelp answering questions:\n" +
+                        "For multiple choice questions enter A, B, C, or D.\n"+
+                        "For true or false questions enter A for True or B for False.");
                 //blank line
                 System.out.println();
                 //quit the game by inputting Q/q

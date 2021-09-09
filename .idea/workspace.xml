@@ -5,26 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0e304ac-c8c7-41e9-807c-1e4be86d37e3" name="Default Changelist" comment="Merge branch 'dev' of https://github.com/pierregober/graduation-day into hongyiDev&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Graduation_Day-1.0.jar">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-day.iml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-day.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/graduation-day/items.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/actions/GameAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/actions/GameAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/actions/GameCombat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/actions/GameCombat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/client/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/client/GameClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/client/GraduationDayApplicationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/client/GraduationDayApplicationClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/client/TitleScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/client/TitleScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/elements/Bully.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/elements/Bully.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/elements/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/elements/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/PointSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/PointSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/QuestionDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/QuestionDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/pointsystem/QuestionTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/pointsystem/QuestionTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/utils/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/utils/Grade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/utils/Prompter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/utils/Prompter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graduation/utils/readMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/utils/readMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/graduation/client/TitleScreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/graduation/client/TitleScreenTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/graduation/pointsystem/QuestionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/graduation/pointsystem/QuestionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graduation/utils/Prompter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graduation/utils/Prompter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GraduationDayApplicationClient" />
+        <item itemvalue="Application.PointSystem" />
         <item itemvalue="Application.GraduationDayApplicationClient" />
         <item itemvalue="Application.PointSystem" />
       </list>
