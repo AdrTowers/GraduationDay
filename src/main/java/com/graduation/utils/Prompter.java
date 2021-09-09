@@ -112,7 +112,7 @@ public class Prompter {
                         "Look - Displays current room.\n" +
                         "Cheat - Chance at obtaining the correct answer.\n" +
                         "Get item - Adds item found in room to backpack.\n" +
-                        "S - Display your status.\n" +
+                        "S - Displays the subjects you've taken.\n" +
                         "Q - Quit game.");
                 System.out.println(
                         "\nHelp answering questions:\n" +
