@@ -27,10 +27,15 @@ public class GameAction {
                 break;
             case "get":
                 //Calls the method to initiate the item sequence
-                GameClient.getLevelDetails("item");
+                try {
+                    GameClient.getLevelDetails("item");
+                } catch (NullPointerException e){
+                    System.out.println("Please enter an item name to get.");
+                }
+
                 break;
             default:
-                System.out.println("You entered a an invalid move. Type \"H\" for the instructions");
+                System.out.println("You entered an invalid move. Type \"H\" for the instructions");
                 getAction();
                 break;
         }
