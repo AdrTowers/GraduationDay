@@ -59,12 +59,12 @@ public class GameCombat {
 
             switch (moveArray[0]) {
                 case "run":
-                    //Step 1: RNG to find out if you can run successfully -- you have a 12% chance
+                    //Step 1: RNG to find out if you can run successfully -- you have a 12% chance of NOT escaping
                     if((int)(Math.random() * 100) >= 12){
-                        System.out.println("You were able to run away successfully!! You left the Bully int he dust. He got snagged by the Principal");
+                        System.out.println("You were able to run away successfully!! You left the Bully in the dust. He got snagged by the Principal");
                         GameAction.getAction();
                     }else{
-                        //Massive damage if caught tryign to run
+                        //Massive damage if caught trying to run
                         int rightHook = Player.getHealth() - 50 ;
                         Player.setHealth(rightHook);
                         System.out.println("You didn't get so lucky.. Bully hit you with a right hook to the jaw.");
