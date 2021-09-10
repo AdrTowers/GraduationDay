@@ -6,7 +6,7 @@
 #                  |              |                ##
 #               Hallway %s --- Geography %s        ##    Credit: %s
 #                                 |                ##
-#                              Cafeteria %s        ##
+#                              Cafeteria %s        ##    Health: %s
 #                                 |                ##
 #                               Maths %s           ##
 #                                                  ##
