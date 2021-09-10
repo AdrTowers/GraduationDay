@@ -89,7 +89,7 @@ public class Prompter {
                 //add function to show player status
                 System.out.println(GameClient.getPlayer().getGrade().toString());
                 System.out.println(readMap.convertedMap());
-                String subjectList = "Subjects Token: ";
+                String subjectList = "Subjects Taken: ";
                 for (String subject : Player.getSubjectTaken()) {
                     subjectList += subject + "; ";
                 }
