@@ -38,16 +38,4 @@ public class SoundEffects {
 
         clip.start();
     }
-
-//    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException{
-//
-//                Scanner scanner = new Scanner(System.in);
-//        File file = new File("Audio/spellwave.wav");
-//        AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
-//        Clip clip = AudioSystem.getClip();
-//        clip.open(audioInput);
-//
-//        clip.start();
-//        String response = scanner.next();
-//    }
 }
