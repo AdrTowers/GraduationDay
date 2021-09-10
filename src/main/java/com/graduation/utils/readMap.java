@@ -56,7 +56,7 @@ public class readMap {
             newMap = String.format(map, mapCode.get("Computers"), mapCode.get("Player"),
                     mapCode.get("Hallway"), mapCode.get("Gym"), mapCode.get("Grade"),
                     mapCode.get("Cafeteria"), mapCode.get("Credit"), mapCode.get("Maths"),
-                    mapCode.get("Geography"), mapCode.get("History"), mapCode.get("Health"));
+                    mapCode.get("Health"), mapCode.get("Geography"), mapCode.get("History"));
         } else if (Player.getGrade() == Grade.SENIOR) {
             healthHearts = determineHealthHearts();
             mapCode.put("Health", healthHearts);
@@ -65,7 +65,7 @@ public class readMap {
             newMap = String.format(map, mapCode.get("Computers"), mapCode.get("Player"),
                     mapCode.get("History"), mapCode.get("Gym"), mapCode.get("Grade"),
                     mapCode.get("Hallway"), mapCode.get("Geography"), mapCode.get("Credit"),
-                    mapCode.get("Cafeteria"), mapCode.get("Maths"), mapCode.get("Health"));
+                    mapCode.get("Cafeteria"), mapCode.get("Health"), mapCode.get("Maths"));
         }
 
         return newMap;
