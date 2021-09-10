@@ -4,12 +4,15 @@ import com.graduation.client.GameClient;
 import com.graduation.utils.Prompter;
 import com.graduation.utils.readMap;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class GameAction {
     private static Scanner action = new Scanner(System.in);
 
-    public static void getAction() {
+    public static void getAction() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         Prompter.clearScreen();
         //System.out.println(GameClient.getPlayer());
         System.out.println(readMap.convertedMap());
