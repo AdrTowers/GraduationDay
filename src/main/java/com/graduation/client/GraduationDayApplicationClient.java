@@ -2,10 +2,13 @@ package com.graduation.client;
 
 import com.graduation.utils.Prompter;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class GraduationDayApplicationClient {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         System.out.println("\nGRADUATION DAY");
         System.out.println( "Team Members:\n" +
                 " Hongyi Qu\n" +

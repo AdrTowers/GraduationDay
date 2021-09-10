@@ -5,9 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.graduation.client.GameClient;
 import com.graduation.utils.Grade;
 import com.graduation.utils.Prompter;
+import com.graduation.utils.SoundEffects;
 import com.graduation.utils.readMap;
 import org.jsoup.Jsoup;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -62,7 +66,7 @@ public class Question {
         return lists;
     }
 
-    public int generateQuestions(String type, Grade level) {
+    public int generateQuestions(String type, Grade level) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         if (type.isBlank()) {
             return -1;
         } else {
@@ -118,10 +122,12 @@ public class Question {
                 chosen = userChoice.charAt(0);
                 if (possible_answers.get(chosen).compareTo(Jsoup.parse(sample.getCorrect_answer()).text()) == 0) {
                     System.out.println(getRandomElement(correct));
+                    SoundEffects.correctAnswer();   // Plays 'positive' sound effect
                     counter += 1;
                     System.out.println(counter + " out of " + samples.size() + " questions answered correctly.\n");
                 } else {
                     System.out.println("Incorrect: The correct answer is " + sample.getCorrect_answer());
+                    SoundEffects.incorrectAnswer(); // Plays 'negative' sound effect
                     System.out.println(counter + " out of " + samples.size() + " questions answered correctly.\n");
 
                 }

@@ -4,7 +4,11 @@ import com.graduation.client.GameClient;
 import com.graduation.elements.Bully;
 import com.graduation.elements.Player;
 import com.graduation.utils.Grade;
+import com.graduation.utils.SoundEffects;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +38,7 @@ public class PointSystem {
         return Double.parseDouble(new DecimalFormat("#.##").format(player_total_grade / (double) numberOfSubjects));
     }
 
-    public static void teacherQuestions(String subject, Grade level, Player player) {
+    public static void teacherQuestions(String subject, Grade level, Player player) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         currentPlayer=player;
         if (!player.getSubjectTaken().contains(subject)) {
             Question questions = new Question();
@@ -81,11 +85,12 @@ public class PointSystem {
         // System.out.println(Arrays.toString(player.getSubjectTaken().toArray(new String[0])));
     }
 
-    public static void changePlayerGrade(Player player) {
+    public static void changePlayerGrade(Player player) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Step 1: Determine if we can go to the next grade level
         if (player.getSubjectTaken().containsAll(core) && player.getCredit() >= 2.0) {
             //display a congratulation message on moving to the next grade
-            System.out.println("congratulations, you've passed "+player.getGrade());
+            System.out.println("Congratulations, you've passed " + player.getGrade() + " year!");
+            SoundEffects.movingToNextGrade();   // Plays 'congratulatory' sound effect
             isNewLevel = true;
             switch (player.getGrade()) {
                 case FRESHMAN:

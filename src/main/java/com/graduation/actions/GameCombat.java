@@ -8,6 +8,9 @@ import com.graduation.elements.Player;
 import com.graduation.utils.Prompter;
 import com.graduation.utils.readMap;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -18,7 +21,7 @@ public class GameCombat {
     private static int bullyHitPoints = (int)(Math.random() * 25);
     private static JsonNode data;
 
-    public static void initializeCombatScene() {
+    public static void initializeCombatScene() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         Prompter.clearScreen();
         //System.out.println(GameClient.getPlayer());
         System.out.println(readMap.convertedMap());
@@ -27,7 +30,7 @@ public class GameCombat {
         fight();
     }
 
-    public static void fight() {
+    public static void fight() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         if (Player.getHealth() <= 0) {
             //Step 1: You get a report card stolen
             String reportCard = Player.getSubjectTaken().remove(0);             //remove first entry, store the string for later
