@@ -6,6 +6,6 @@
 #                                      |         ##
 #    Maths %s ---- Cafeteria %s --- History %s   ##    Credit: %s
 #      |                                         ##
-#  Computers %s                                  ##
+#  Computers %s                                  ##    Health: %s
 #                                                ##
 ###############################################################################
