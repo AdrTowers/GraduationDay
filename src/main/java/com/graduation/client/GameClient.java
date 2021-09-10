@@ -10,6 +10,8 @@ import com.graduation.pointsystem.PointSystem;
 import com.graduation.utils.Grade;
 import com.graduation.utils.Prompter;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,7 +31,7 @@ public class GameClient {
     public GameClient(Prompter prompter) {
         this.prompter = prompter;
     }
-    public void initialize(){
+    public void initialize() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         player = setPlayer();
         bully = setBully();
         //Step 1 -- Generate the location info from the json
@@ -44,7 +46,7 @@ public class GameClient {
         }
     }
 
-    public static void nextLocation(String location){
+    public static void nextLocation(String location) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Grab the previous and read the location according to direction within it's JSON properties
         try{
 
@@ -74,7 +76,7 @@ public class GameClient {
         }
     }
 
-    public static void getLevelDetails(String key){
+    public static void getLevelDetails(String key) throws LineUnavailableException, UnsupportedAudioFileException {
         try{
             data = mapper.readTree(Files.readAllBytes(Paths.get("Banner/rooms.json")));
             prevRoom = getLastRoom(data, Player.getLocation(), Player.getGrade());
@@ -102,7 +104,7 @@ public class GameClient {
     }
 
     //Method to initialize the action to move
-    public static void continueJourney(boolean val){
+    public static void continueJourney(boolean val) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Have a conditional that switch when it's a new level
         if(val){
             getLevelDetails("desc");

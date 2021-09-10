@@ -8,6 +8,8 @@ import com.graduation.pointsystem.PointSystem;
 import com.graduation.pointsystem.Question;
 import org.jsoup.Jsoup;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -80,7 +82,7 @@ public class Prompter {
         return response;
     }
 
-    public String prompt(String promptText) {
+    public String prompt(String promptText) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         String response;
         while (true) {
             System.out.print(promptText);
@@ -156,7 +158,7 @@ public class Prompter {
         }
     }
 
-    private void hackClass() {
+    private void hackClass() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         String currentLocation = PointSystem.currentPlayer.getLocation().toLowerCase();
         //check if the current room is not a non-subject room
         if (!PointSystem.getNotSubject().contains(currentLocation)) {
