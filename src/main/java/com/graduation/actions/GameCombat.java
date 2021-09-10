@@ -20,7 +20,7 @@ public class GameCombat {
 
     public static void initializeCombatScene() {
         Prompter.clearScreen();
-        System.out.println(GameClient.getPlayer());
+        //System.out.println(GameClient.getPlayer());
         System.out.println(readMap.convertedMap());
         System.out.println("*******************************");
         System.out.println(Bully.getName() + " has spotted you!");
@@ -39,7 +39,7 @@ public class GameCombat {
 
         }else{
             Prompter.clearScreen();
-            System.out.println(GameClient.getPlayer());
+            //System.out.println(GameClient.getPlayer());
             System.out.println(readMap.convertedMap());
             System.out.println("*******************************");
             System.out.println("Health Points: " + Player.getHealth());

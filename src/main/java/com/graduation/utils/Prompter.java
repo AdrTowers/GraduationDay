@@ -106,11 +106,20 @@ public class Prompter {
                     }
                 }
             } else if (response.matches("help|h")) {
+                System.out.println("\n***************************************************************");
+                System.out.println("Help navigating game:\n" +
+                        "Go - North, East, South, West.\n" +
+                        "Look - Displays current room.\n" +
+                        "Cheat - Chance at obtaining the correct answer.\n" +
+                        "Get item - Adds item found in room to backpack.\n" +
+                        "S - Displays the subjects you've taken.\n" +
+                        "Q - Quit game.");
                 System.out.println(
                         "\nHelp answering questions:\n" +
                         "For multiple choice questions enter A, B, C, or D.\n"+
                         "For true or false questions enter A for True or B for False.");
                 //blank line
+                System.out.println("***************************************************************");
                 System.out.println();
                 //quit the game by inputting Q/q
             } else if (response.matches("q")) {
