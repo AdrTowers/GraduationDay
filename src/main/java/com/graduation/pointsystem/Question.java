@@ -11,6 +11,7 @@ import org.jsoup.Jsoup;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -30,6 +31,9 @@ public class Question {
     private static QuestionDetail currentQuestion = null;
     private static Map<Character, String> currentAnswer = null;
     private static List<String> correct = new ArrayList<>(List.of("Congrats!", "Nice job!", "Correct!", "Way to go!", "Keep it going!", "Nailed it!"));
+    private File questionJson = new File("Banner/question.json");
+    private ObjectMapper mapper = new ObjectMapper();
+
     public static QuestionDetail getCurrentQuestion() {
         return currentQuestion;
     }
@@ -67,6 +71,7 @@ public class Question {
     }
 
     public int generateQuestions(String type, Grade level) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        QuestionParser textparser = mapper.readValue(questionJson, QuestionParser.class);
         if (type.isBlank()) {
             return -1;
         } else {
@@ -106,16 +111,16 @@ public class Question {
                 }
                 //get user response
                 String userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
-                if (userChoice.matches("QUIT")) {
+                if (userChoice.matches(textparser.getQuit()))  { //quit
                     return 0;
                 }
 
                 char chosen = ' ';
                 //while user response does not meet certain criteria, keep asking
                 while (userChoice.compareTo("") == 0 || !possible_answers.keySet().contains(userChoice.toUpperCase().charAt(0))) {
-                    System.out.println("You can only choose from these options: " + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
+                    System.out.println(textparser.getOptions() + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
                     userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
-                    if (userChoice.matches("QUIT")) {
+                    if (userChoice.matches(textparser.getQuit())) {
                         return 0;
                     }
                 }
@@ -124,11 +129,11 @@ public class Question {
                     System.out.println(getRandomElement(correct));
                     SoundEffects.correctAnswer();   // Plays 'positive' sound effect
                     counter += 1;
-                    System.out.println(counter + " out of " + samples.size() + " questions answered correctly.\n");
+                    System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
                 } else {
-                    System.out.println("Incorrect: The correct answer is " + sample.getCorrect_answer());
+                    System.out.println(textparser.getIncorrect() + sample.getCorrect_answer());
                     SoundEffects.incorrectAnswer(); // Plays 'negative' sound effect
-                    System.out.println(counter + " out of " + samples.size() + " questions answered correctly.\n");
+                    System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
 
                 }
                 counter = counter - cheatCounter;
