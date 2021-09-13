@@ -2,40 +2,53 @@ package com.graduation.utils;
 
 import javax.sound.sampled.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class SoundEffects {
+    private static int mute = -100;
+    private static int unmute = 0;
 
     /**
-     * Plays 'positive' sound when user gets a correct answer
+     * Locates 'positive' sound path file
      * @throws IOException
      * @throws UnsupportedAudioFileException
      * @throws LineUnavailableException
      */
     public static void correctAnswer() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
-        Scanner scanner = new Scanner(System.in);
         File file = new File("Audio/quickwin.wav");
-        AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioInput);
-//        FloatControl decrease = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-//        decrease.setValue(-10);
-        clip.start();
+        playAudio(file);
     }
 
     /**
-     * Plays 'negative' sound when user gets an incorrect answer
+     * Locates 'negative' sound path file
      * @throws IOException
      * @throws UnsupportedAudioFileException
      * @throws LineUnavailableException
      */
-    public static void incorrectAnswer() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        Scanner scanner = new Scanner(System.in);
+    public static void incorrectAnswer() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         File file = new File("Audio/fail.wav");
-        AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
+        playAudio(file);
+    }
+
+    /**
+     * Locates 'congratulatory' sound path file
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
+     * @throws LineUnavailableException
+     */
+    public static void movingToNextGrade() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        File file = new File("Audio/Levelup.wav");
+        playAudio(file);
+    }
+
+    /**
+     * Plays audio file
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
+     * @throws LineUnavailableException
+     */
+    public static void playAudio(File audioFile) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(audioFile);
         Clip clip = AudioSystem.getClip();
         clip.open(audioInput);
 
@@ -43,23 +56,17 @@ public class SoundEffects {
     }
 
     /**
-     * Plays a 'congratulatory' sound when user passes into the next grade
-     * @throws IOException
-     * @throws UnsupportedAudioFileException
-     * @throws LineUnavailableException
+     * Toggles mute and un-mute volume options
+     * @param vol
      */
-    public static void movingToNextGrade() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        Scanner scanner = new Scanner(System.in);
-        File file = new File("Audio/Levelup.wav");
-        AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioInput);
-        //increaseVolume(clip, vol);
-        clip.start();
-    }
+    public static void toggleMute(String vol){
+        if (vol.equals("mute")){
+            System.out.println("ToggleVolume - mute :" + vol);
 
-    public static void increaseVolume(Clip clip, Double vol) throws LineUnavailableException {
-        FloatControl decrease = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        decrease.setValue(-10);
+        } else if (vol.equals("unmute")){
+            System.out.println("ToggleVolume - unmute :" + vol);
+        } else {
+            System.out.println("Unable to do that.");
+        }
     }
 }

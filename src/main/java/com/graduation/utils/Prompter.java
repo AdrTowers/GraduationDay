@@ -131,10 +131,18 @@ public class Prompter {
                     saveCurrentState();
                 }
                 System.exit(0);
-
+            // Displays current room description. Useful if looking for items
             } else if (response.matches("look")) {
                 System.out.println("You take a look around.");
                 GameClient.getLevelDetails("desc");
+            // Toggles audio mute
+            } else if (response.matches("mute")) {
+                    System.out.println("Volume muted.");
+                    SoundEffects.toggleMute("mute");
+            // Toggles audio un-mute
+            } else if (response.matches("unmute")){
+                    System.out.println("Volume muted.");
+                    SoundEffects.toggleMute("mute");
             } else if (response.matches("cheat")) {
                 //if random integer between 1-10 is even then the user will get the question wrong
                 if (((getRandomNumber(10) % 2) == 0)) {
