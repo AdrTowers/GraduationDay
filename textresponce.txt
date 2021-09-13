@@ -1,0 +1,57 @@
+Prompter
+"\nHelp answering questions:\n" +
+"For multiple choice questions enter A, B, C, or D.\n"+
+"For true or false questions enter A for True or B for False."
+"Do you want to save before exiting? (yes/no)"
+"You take a look around."
+"You have been caught and your answer is incorrect."
+"You have already taken "
+
+PointSystem
+"Your current GPA: "
+"Grade now: "
+"Your score of "
+"You have already passed "
+" is a required field"
+"#.##"
+
+Question
+"You can only choose from these options: "
+" questions answered correctly.\n"
+"Incorrect: The correct answer is "
+"QUIT"
+" out of "
+
+GameAction
+"go"
+"get"
+Aht aht.. you didn't enter a valid cardinal direction"
+"Please enter an item name to get."
+"You entered an invalid move. Type \"H\" for the instructions"
+
+GameCombat
+" has spotted you!"
+"The Bully stole a report card! You must take a " + reportCard + " again."
+"*******************************"
+"Health Points: "
+"Bully's health "
+"Commands: \nRUN\nUSE [item]\nFIGHT"
+"'s bookbag items:"
+"Enter move: "
+"run"
+"You were able to run away successfully!! You left the Bully in the dust. He got snagged by the Principal"
+"You didn't get so lucky.. Bully hit you with a right hook to the jaw."
+"fight"
+"You kicked him in the right spot! You inflicted " + kick + " damage!!"
+"That kick really hurt the Bully! You inflicted " + kick + " to the bully!!"
+"Wow that didn't them hurt much... You inflicted " + kick + " to the bully!!"
+"You defeated " + Bully.getName() + " Hip hip Hooray!! Bully says he'll get you next year."
+"use"
+Bully.getName() + " was unaffected by " + moveArray[1]
+"Hit3"
+"You don't have a " + moveArray[1] + " in your book bag"
+"That item is not in your book bag!"
+"You entered an invalid move. Type \"H\" for the instructions"
+"Massive damaged! Bully inflicted " + bullyHitPoints + " to you!!"
+"That punch hurt! Bully inflicted " + bullyHitPoints + " to you!!"
+"Wow that didn't hurt much... Bully inflicted " + bullyHitPoints + " to you!!"

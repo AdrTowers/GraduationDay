@@ -42,6 +42,10 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Prompter {
+    private File prompterJson = new File("Banner/prompter.json");
+    private ObjectMapper mapper = new ObjectMapper();
+    PrompterParser textparser = mapper.readValue(prompterJson, PrompterParser.class);
+
     private Scanner scanner;
 
     /**
@@ -50,7 +54,7 @@ public class Prompter {
      *
      * @param scanner delegate object used by this prompter for reading input.
      */
-    public Prompter(Scanner scanner) {
+    public Prompter(Scanner scanner) throws IOException {
         this.scanner = scanner;
     }
 
@@ -83,6 +87,7 @@ public class Prompter {
     }
 
     public String prompt(String promptText) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+
         String response;
         while (true) {
             System.out.print(promptText);
@@ -91,7 +96,7 @@ public class Prompter {
                 //add function to show player status
                 System.out.println(GameClient.getPlayer().getGrade().toString());
                 System.out.println(readMap.convertedMap());
-                String subjectList = "Subjects Taken: ";
+                String subjectList = textparser.getSubejects();
                 for (String subject : Player.getSubjectTaken()) {
                     subjectList += subject + "; ";
                 }
@@ -109,23 +114,23 @@ public class Prompter {
                 }
             } else if (response.matches("help|h")) {
                 System.out.println("\n***************************************************************");
-                System.out.println("Help navigating game:\n" +
-                        "Go - North, East, South, West.\n" +
-                        "Look - Displays current room.\n" +
-                        "Cheat - Chance at obtaining the correct answer.\n" +
-                        "Get item - Adds item found in room to backpack.\n" +
-                        "S - Displays the subjects you've taken.\n" +
-                        "Q - Quit game.");
+                System.out.println(textparser.getHelp() +
+                        textparser.getGoNSEW() +
+                        textparser.getLookDisplay() +
+                        textparser.getCheat() +
+                        textparser.getGetItem() +
+                        textparser.getS() +
+                        textparser.getQ());
                 System.out.println(
-                        "\nHelp answering questions:\n" +
-                        "For multiple choice questions enter A, B, C, or D.\n"+
-                        "For true or false questions enter A for True or B for False.");
+                        textparser.getAnswerQuesitons() +
+                                textparser.getMultipleChoice()+
+                                textparser.getForTF());
                 //blank line
                 System.out.println("***************************************************************");
                 System.out.println();
                 //quit the game by inputting Q/q
             } else if (response.matches("q")) {
-                System.out.println("Do you want to save before exiting? (yes/no)");
+                System.out.println(textparser.getSave());
                 response = scanner.nextLine().trim().toLowerCase();
                 if (response.matches("yes|y")) {
                     saveCurrentState();
@@ -133,7 +138,7 @@ public class Prompter {
                 System.exit(0);
             // Displays current room description. Useful if looking for items
             } else if (response.matches("look")) {
-                System.out.println("You take a look around.");
+                System.out.println(textparser.getLook());
                 GameClient.getLevelDetails("desc");
             // Toggles audio mute
             } else if (response.matches("mute")) {
@@ -146,7 +151,7 @@ public class Prompter {
             } else if (response.matches("cheat")) {
                 //if random integer between 1-10 is even then the user will get the question wrong
                 if (((getRandomNumber(10) % 2) == 0)) {
-                    System.out.println("You have been caught and your answer is incorrect.");
+                    System.out.println(textparser.getCaught());
                     Question.cheatCounter++;
 
                 } else {
@@ -172,7 +177,7 @@ public class Prompter {
         if (!PointSystem.getNotSubject().contains(currentLocation)) {
             //check if the list of subject taken contains the current room
             if (PointSystem.currentPlayer.getSubjectTaken().contains(currentLocation)) {
-                System.out.println("You have already taken " + currentLocation);
+                System.out.println(textparser.getTaken() + currentLocation);
             } else {
                 PointSystem.currentPlayer.getSubjectTaken().add(currentLocation);
                 //default 2.4 GPA if you hack

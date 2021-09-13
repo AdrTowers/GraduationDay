@@ -1,0 +1,19 @@
+{
+  "help":"\nHelp answering questions:\n",
+  "goNSEW":"Go - North, East, South, West.\n",
+  "lookDisplay":"Look - Displays current room.\n",
+  "cheat":"Cheat - Chance at obtaining the correct answer.\n",
+  "getItem":"Get item - Adds item found in room to backpack.\n",
+  "s":"S - Displays the subjects you've taken.\n",
+  "q":"Q - Quit game.",
+  "answerQuesitons":"\nHelp answering questions:\n",
+  "multipleChoice":"For multiple choice questions enter A, B, C, or D.\n",
+  "forTF":"For true or false questions enter A for True or B for False.",
+  "multiple":"For multiple choice questions enter A, B, C, or D.\n",
+  "tf":"For true or false questions enter A for True or B for False.",
+  "save":"Do you want to save before exiting? (yes/no)",
+  "look":"You take a look around.",
+  "caught":"You have been caught and your answer is incorrect.",
+  "taken":"You have already taken ",
+  "subejects": "Subjects Taken: "
+}
