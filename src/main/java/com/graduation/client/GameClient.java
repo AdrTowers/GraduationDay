@@ -12,6 +12,7 @@ import com.graduation.utils.Prompter;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -28,7 +29,22 @@ public class GameClient {
     private static JsonNode prevRoom;
     private static final List<String> notSubject = new ArrayList<>(Arrays.asList("gym", "cafeteria", "hallway"));
 
-    public GameClient(Prompter prompter) {
+    private File gameClientJson = new File("Banner/gameclient.json");
+    private ObjectMapper mapper1 = new ObjectMapper();
+    private static File staticGameClientJson = new File("Banner/gameclient.json");
+    private static ObjectMapper mapperStatic = new ObjectMapper();
+    GameClientParser textparser = mapper1.readValue(gameClientJson, GameClientParser.class);
+    static GameClientParser staticParser;
+
+    static {
+        try {
+            staticParser = mapperStatic.readValue(staticGameClientJson, GameClientParser.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public GameClient(Prompter prompter) throws IOException {
         this.prompter = prompter;
     }
     public void initialize() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -62,7 +78,7 @@ public class GameClient {
                 int combat = (int)(Math.random() * 100);
                     //You have a 50% chance of a bully not being there.
                 if(combat >= 50){
-                    System.out.println("Uh oh... " + bully.getName() + " is here. And they spot you. Engaging in combat ");
+                    System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
                     //Engage in combat
                     GameCombat.initializeCombatScene();
                 }else {
@@ -71,7 +87,7 @@ public class GameClient {
             }
             //Catch if the direction is null
         }catch(NullPointerException e){
-            System.out.println("You can't go that direction! Quick Try a different cardinal direction please");
+            System.out.println(staticParser.getDifferent());
             GameAction.getAction();
         }
     }
@@ -85,13 +101,13 @@ public class GameClient {
                 //If the room does have an item check if player already has it!
                 if(player.getInventory().contains(filteredData.asText())){
                     //View to tell the user that they grabbed the room item already
-                    System.out.println("There are no more items to grab from this room...\nremember you grabbed the " + filteredData + "\n");
+                    System.out.println(staticParser.getNoitems() + filteredData + "\n");
                     continueJourney(false);
                 }else{
                     //Method to add the item to the player's bookbag
                     List<String> items = player.getInventory();
                     items.add(filteredData.textValue());
-                    System.out.println("Successfully added " + filteredData + " to your backpack!");
+                    System.out.println(staticParser.getSuccessfull() + filteredData + staticParser.getBackpack());
                     continueJourney(false);
                 }
             }else{
@@ -110,7 +126,7 @@ public class GameClient {
             getLevelDetails("desc");
             PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
         }else{
-            System.out.println("Whats your next move?");
+            System.out.println(staticParser.getNextmove());
             GameAction.getAction();
         }
     }
@@ -137,20 +153,20 @@ public class GameClient {
             //Step 4: Send back the first part which is the init location for the level
            return arrOfStr[0];
         }catch(IOException e){
-            System.out.println("Something went wrong: " + e);
+            System.out.println(staticParser.getWrong() + e);
             return "Computers"; //default value
         }
     }
 
     //Initialize the bully
     public Bully setBully() {
-        String bullyName = prompter.prompt("Please enter bully name below \n", "this is a hole to put bully in");
+        String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
         return new Bully(bullyName, 100, true);
     }
 
     //Initialize the player as a FRESHMAN aka first level
     public Player setPlayer() {
-        String userName = prompter.prompt("Please enter your name below \n", "this is a trashCAN to put player in");
+        String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
         return new Player(userName, 0, 100, Grade.FRESHMAN, "Computers");
     }
 

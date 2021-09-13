@@ -1,0 +1,13 @@
+{
+  "go":"go",
+  "get":"get",
+  "validDirection":"\n\nAht aht.. you didn't enter a valid cardinal direction",
+  "item":"Please enter an item name to get.",
+  "invalidMove":"You entered an invalid move. Type \"H\" for the instructions",
+  "enterMove": "Enter a move: ",
+  "north": "north",
+  "south": "south",
+  "east": "east",
+  "west": "west",
+  "itemLevel": "item"
+}

@@ -1,0 +1,7 @@
+{
+ "options" :"You can only choose from these options: ",
+ "questions" :" questions answered correctly.\n",
+ "incorrect" :"Incorrect: The correct answer is ",
+ "quit" :"QUIT",
+ "outof" :" out of "
+}
