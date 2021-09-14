@@ -17,7 +17,7 @@ import java.util.Scanner;
 import static com.graduation.pointsystem.PointSystem.updateReportCard;
 import static org.junit.Assert.*;
 
-public class PointSystemTest {
+public class ReportCardTest {
 
     @Test
     public void shouldCreateReportCard() {
@@ -27,6 +27,25 @@ public class PointSystemTest {
         String data = "";
         data = readFromFile(data);
         assertEquals(report, data);
+    }
+
+    @Test
+    public void shouldCreateNewReportCardIfFreshman() {
+        Player player = new Player("test name", 4.0, 100, Grade.FRESHMAN, "cafeteria");
+        String report = player.getCredit() + " " + player.getGrade();
+        updateReportCard(report, player);
+
+        player.setCredit(2.4); // set new credit
+        String newReport = player.getCredit() + " " + player.getGrade(); // set new report based on new credit
+        updateReportCard(newReport, player); // update report card with new info
+
+        String data = "";
+        data = readFromFile(data);
+        int lines = checkLines();
+
+        // If the user is a Freshman, there should only be 1 line
+        assertEquals(1, lines);
+        assertEquals(newReport, data);
     }
 
     @Test
