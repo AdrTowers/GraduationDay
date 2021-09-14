@@ -46,7 +46,7 @@ public class Question {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
-    private List<QuestionDetail> getQuestions(String type, Grade grade) throws JsonProcessingException, ExecutionException, InterruptedException {
+    List<QuestionDetail> getQuestions(String type, Grade grade) throws JsonProcessingException, ExecutionException, InterruptedException {
         //testing level
         //System.out.println("level=" + difficulties.get(grade));
         //make a client object
@@ -92,13 +92,24 @@ public class Question {
                 for (Object incorrect : sample.getIncorrect_answers()) {
                     answers.add(incorrect.toString());
                 }
-                //randomize the possible answers
-                Collections.shuffle(answers);
-                char option = 'A';
-                for (String possible_answer : answers) {
-                    //stripping the answer of any html tags
-                    possible_answers.put(option++, Jsoup.parse(possible_answer).text());
+                for (int i = 0; i < samples.size(); i++) {
+                    //this accounts for all the true/false questions from the API
+                    if(answers.size() == 2) {
+                        for (String possible_answer : answers) {
+                            possible_answers.put('A', "True");
+                            possible_answers.put('B', "False");
+                        }
+                    }
+                    else{
+                        Collections.shuffle(answers);
+                        char option = 'A';
+                        for (String possible_answer : answers) {
+                            //stripping the answer of any html tags
+                            possible_answers.put(option++, Jsoup.parse(possible_answer).text());
+                        }
+                    }
                 }
+
                 //assign the current set of answers to the class variable currentAnswer
                 currentAnswer = possible_answers;
                 for (Map.Entry<Character, String> options : possible_answers.entrySet()) {
