@@ -111,7 +111,7 @@ public class PointSystem {
         if (player.getSubjectTaken().containsAll(core) && player.getCredit() >= 2.0) {
             //display a congratulation message on moving to the next grade
             System.out.println(staticParser.getCongratulations() + player.getGrade() + staticParser.getYear());
-            SoundEffects.movingToNextGrade();   // Plays 'congratulatory' sound effect
+            SoundEffects.movingToNextGrade(false);   // Plays 'congratulatory' sound effect
             isNewLevel = true;
             switch (player.getGrade()) {
                 case FRESHMAN:

@@ -127,12 +127,12 @@ public class Question {
                 chosen = userChoice.charAt(0);
                 if (possible_answers.get(chosen).compareTo(Jsoup.parse(sample.getCorrect_answer()).text()) == 0) {
                     System.out.println(getRandomElement(correct));
-                    SoundEffects.correctAnswer();   // Plays 'positive' sound effect
+                    SoundEffects.correctAnswer(false);   // Plays 'positive' sound effect
                     counter += 1;
                     System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
                 } else {
                     System.out.println(textparser.getIncorrect() + sample.getCorrect_answer());
-                    SoundEffects.incorrectAnswer(); // Plays 'negative' sound effect
+                    SoundEffects.incorrectAnswer(false); // Plays 'negative' sound effect
                     System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
 
                 }
