@@ -9,8 +9,7 @@ import com.graduation.utils.SoundEffects;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -110,6 +109,10 @@ public class PointSystem {
         //Step 1: Determine if we can go to the next grade level
         if (player.getSubjectTaken().containsAll(core) && player.getCredit() >= 2.0) {
             //display a congratulation message on moving to the next grade
+
+            // Writes GPA and grade to report_card.txt
+            updateReportCard(player.getCredit() + " " + player.getGrade(), player);
+
             System.out.println(staticParser.getCongratulations() + player.getGrade() + staticParser.getYear());
             SoundEffects.movingToNextGrade(false);   // Plays 'congratulatory' sound effect
             isNewLevel = true;
@@ -132,6 +135,35 @@ public class PointSystem {
             //Step 4: Toggle the bully
             Bully.setPresence(true);
             Bully.setHealth(100);
+        }
+    }
+
+    /**
+     * Creates and updates a report card after passing each grade
+     * @param report String containing the GPA and current grade
+     */
+    public static void updateReportCard(String report, Player player) {
+        try {
+            File file = new File("report_card.txt");
+            // Check if the user is currently a Freshman and if the file exists
+            // If the file already exists, delete the file
+            if (file.exists() && player.getGrade().equals(Grade.FRESHMAN)) {
+                file.delete();
+            }
+            // If the file does not exist, create a new file
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Append the file on each report creation
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            // Write the report
+            bw.write(report +"\n");
+            bw.close();
+        } catch (IOException ex) {
+            System.out.println("Exception occurred: ");
+            ex.printStackTrace();
         }
     }
 }
