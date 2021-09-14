@@ -1,0 +1,14 @@
+{
+  "uhoh":"Uh oh... " ,
+  "ishere":" is here. And they spot you. Engaging in combat ",
+  "different":"You can't go that direction! Quick Try a different cardinal direction please",
+  "noitems":"There are no more items to grab from this room...\nremember you grabbed the ",
+  "successfull":"Successfully added ",
+  "backpack":" to your backpack!",
+  "nextmove":"Whats your next move?",
+  "wrong":"Something went wrong: ",
+  "please":"Please enter bully name below \n",
+  "hole":"this is a hole to put bully in",
+  "entername":"Please enter your name below \n",
+  "trashcan":"this is a trashCAN to put player in"
+}

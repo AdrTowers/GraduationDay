@@ -2,10 +2,10 @@
 #  Direction                                     ##
 #    NORTH               Gym %s -- Geography %s  ##    Player: %s
 #      ^                               |         ##
-#                                  Hallway %s    ##    Credit: %s
+#                                  Hallway %s    ##    Grade: %s
 #                                      |         ##
-#    Maths %s ---- Cafeteria %s --- History %s   ##
+#    Maths %s ---- Cafeteria %s --- History %s   ##    Credit: %s
 #      |                                         ##
-#  Computers %s                                  ##
+#  Computers %s                                  ##    Health: %s
 #                                                ##
 ###############################################################################
