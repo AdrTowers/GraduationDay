@@ -32,7 +32,7 @@ public class Player {
         subjectTaken = newSubjectTaken;
     }
 
-    public Player(String name, int credit, int health, Grade grade, String location){
+    public Player(String name, double credit, int health, Grade grade, String location){
         this.name = name;
         this.credit = credit;
         this.health = health;
