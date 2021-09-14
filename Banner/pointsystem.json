@@ -1,0 +1,12 @@
+{
+  "gpa":"Your current GPA: ",
+  "grade":"Grade now: ",
+  "score":"Your score of ",
+  "passed":"You have already passed ",
+  "required":" is a required field",
+  "format":"#.##",
+  "lessThan2":" is less than 2.0, you need to take ",
+  "again":" again",
+  "congratulations":"Congratulations, you've passed ",
+  "year":" year!"
+}
