@@ -24,6 +24,10 @@ public class SoundEffects {
         SoundEffects.volume = volume;
     }
 
+    public static int getVolume() {
+        return volume;
+    }
+
     /**
      * Locates 'positive' sound path file
      * @throws IOException
