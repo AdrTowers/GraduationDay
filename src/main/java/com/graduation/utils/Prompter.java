@@ -45,6 +45,9 @@ public class Prompter {
     private File prompterJson = new File("Banner/prompter.json");
     private ObjectMapper mapper = new ObjectMapper();
     PrompterParser textparser = mapper.readValue(prompterJson, PrompterParser.class);
+    SoundEffects soundEffects = SoundEffects.getInstance();
+    private final int mute = -80;
+    private final int unmute = 0;
 
     private Scanner scanner;
 
@@ -119,6 +122,8 @@ public class Prompter {
                         textparser.getLookDisplay() +
                         textparser.getCheat() +
                         textparser.getGetItem() +
+                        textparser.getMute() +
+                        textparser.getUnmute() +
                         textparser.getS() +
                         textparser.getQ());
                 System.out.println(
@@ -136,10 +141,18 @@ public class Prompter {
                     saveCurrentState();
                 }
                 System.exit(0);
-
+            // Displays current room description. Useful if looking for items
             } else if (response.matches("look")) {
                 System.out.println(textparser.getLook());
                 GameClient.getLevelDetails("desc");
+            // Toggles audio mute
+            } else if (response.matches("mute")) {
+                    System.out.println("Volume muted.");
+                soundEffects.setVolume(mute);
+            // Toggles audio un-mute
+            } else if (response.matches("unmute")){
+                    System.out.println("Volume un-muted.");
+                soundEffects.setVolume(unmute);
             } else if (response.matches("cheat")) {
                 //if random integer between 1-10 is even then the user will get the question wrong
                 if (((getRandomNumber(10) % 2) == 0)) {

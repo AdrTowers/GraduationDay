@@ -19,6 +19,8 @@ class PrompterParser {
     private String caught;
     private String taken;
     private String subejects;
+    private String mute;
+    private String unmute;
 
     public String getHelp() {
         return help;
@@ -86,5 +88,13 @@ class PrompterParser {
 
     public String getSubejects() {
         return subejects;
+    }
+
+    public String getMute() {
+        return mute;
+    }
+
+    public String getUnmute() {
+        return unmute;
     }
 }

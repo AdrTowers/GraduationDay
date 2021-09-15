@@ -4,6 +4,8 @@
   "lookDisplay":"Look - Displays current room.\n",
   "cheat":"Cheat - Chance at obtaining the correct answer.\n",
   "getItem":"Get item - Adds item found in room to backpack.\n",
+  "mute": "Mute - Mutes game audio.\n",
+  "unmute": "Unmute - Un-mutes game audio.\n",
   "s":"S - Displays the subjects you've taken.\n",
   "q":"Q - Quit game.",
   "answerQuesitons":"\nHelp answering questions:\n",

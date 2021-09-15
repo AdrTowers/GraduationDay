@@ -33,6 +33,7 @@ public class Question {
     private static List<String> correct = new ArrayList<>(List.of("Congrats!", "Nice job!", "Correct!", "Way to go!", "Keep it going!", "Nailed it!"));
     private File questionJson = new File("Banner/question.json");
     private ObjectMapper mapper = new ObjectMapper();
+    SoundEffects soundEffects = SoundEffects.getInstance();
 
     public static QuestionDetail getCurrentQuestion() {
         return currentQuestion;
@@ -138,12 +139,14 @@ public class Question {
                 chosen = userChoice.charAt(0);
                 if (possible_answers.get(chosen).compareTo(Jsoup.parse(sample.getCorrect_answer()).text()) == 0) {
                     System.out.println(getRandomElement(correct));
-                    SoundEffects.correctAnswer();   // Plays 'positive' sound effect
+                    //Access SoundEffects
+                    soundEffects.correctAnswer();   // Plays 'positive' sound effect
                     counter += 1;
                     System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
                 } else {
                     System.out.println(textparser.getIncorrect() + sample.getCorrect_answer());
-                    SoundEffects.incorrectAnswer(); // Plays 'negative' sound effect
+                    //Access SoundEffects
+                    soundEffects.incorrectAnswer(); // Plays 'negative' sound effect
                     System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
 
                 }
