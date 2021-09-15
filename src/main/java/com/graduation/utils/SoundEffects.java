@@ -5,7 +5,24 @@ import java.io.File;
 import java.io.IOException;
 
 public class SoundEffects {
-    private static int mute = -80;
+    private static int volume;
+    private static SoundEffects instance = null;
+
+    public static SoundEffects getInstance(){
+        if (instance == null){
+            instance = new SoundEffects();
+        }
+        return instance;
+    }
+
+    // CONSTRUCTOR
+    private SoundEffects() {
+        this.volume = 0;
+    }
+
+    public static void setVolume(int volume) {
+        SoundEffects.volume = volume;
+    }
 
     /**
      * Locates 'positive' sound path file
@@ -13,9 +30,9 @@ public class SoundEffects {
      * @throws UnsupportedAudioFileException
      * @throws LineUnavailableException
      */
-    public static void correctAnswer(boolean isMuted) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public static void correctAnswer() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         File file = new File("Audio/quickwin.wav");
-        playAudio(file, isMuted);
+        playAudio(file, volume);
     }
 
     /**
@@ -24,9 +41,9 @@ public class SoundEffects {
      * @throws UnsupportedAudioFileException
      * @throws LineUnavailableException
      */
-    public static void incorrectAnswer(boolean isMuted) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void incorrectAnswer() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         File file = new File("Audio/fail.wav");
-        playAudio(file, isMuted);
+        playAudio(file, volume);
     }
 
     /**
@@ -35,53 +52,23 @@ public class SoundEffects {
      * @throws UnsupportedAudioFileException
      * @throws LineUnavailableException
      */
-    public static void movingToNextGrade(boolean isMuted) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void movingToNextGrade() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         File file = new File("Audio/Levelup.wav");
-        playAudio(file, isMuted);
+        playAudio(file, volume);
     }
 
     /**
-     * Plays audio file
+     * Plays audio file and sets volume
      * @throws IOException
      * @throws UnsupportedAudioFileException
      * @throws LineUnavailableException
      */
-    public static void playAudio(File audioFile, boolean isMuted) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-        if (!isMuted){
-            AudioInputStream audioInput = AudioSystem.getAudioInputStream(audioFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInput);
-
-            clip.start();
-            System.out.println("Volume un-muted.");
-        } else {
+    public static void playAudio(File audioFile, int volume) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(audioFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioInput);
             FloatControl gains = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gains.setValue(mute);
+            gains.setValue(volume);
             clip.start();
-            System.out.println("Volume muted");
-        }
-    }
-
-    /**
-     * Toggles mute and un-mute volume options
-     * @param vol
-     */
-    public static void toggleMute(String vol) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        if (vol.equals("mute")){
-            System.out.println("ToggleVolume - mute :" + vol);
-            correctAnswer(true);
-            incorrectAnswer(true);
-            movingToNextGrade(true);
-        } else if (vol.equals("unmute")){
-            System.out.println("ToggleVolume - unmute :" + vol);
-            correctAnswer(false);
-            incorrectAnswer(false);
-            movingToNextGrade(false);
-        } else {
-            System.out.println("Unable to do that.");
-        }
     }
 }
