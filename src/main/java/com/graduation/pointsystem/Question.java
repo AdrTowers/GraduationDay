@@ -33,6 +33,7 @@ public class Question {
     private static List<String> correct = new ArrayList<>(List.of("Congrats!", "Nice job!", "Correct!", "Way to go!", "Keep it going!", "Nailed it!"));
     private File questionJson = new File("Banner/question.json");
     private ObjectMapper mapper = new ObjectMapper();
+    SoundEffects soundEffects = SoundEffects.getInstance();
 
     public static QuestionDetail getCurrentQuestion() {
         return currentQuestion;

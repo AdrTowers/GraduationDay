@@ -60,15 +60,19 @@ public class GameClient {
             //Step 2b -- Call method to initialize the question sequence
             PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
         }
+
+
     }
 
     public static void nextLocation(String location) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Grab the previous and read the location according to direction within it's JSON properties
         try{
-
             String nextLoc = prevRoom.get(location).textValue();
+            System.out.println(nextLoc);
             player.setLocation(nextLoc);
             getLevelDetails("desc");
+            updateHealthWhenInGym(nextLoc);
+
 
             //Determine if it's a subject room
             if(!notSubject.contains(nextLoc.toLowerCase())){
@@ -89,6 +93,17 @@ public class GameClient {
         }catch(NullPointerException e){
             System.out.println(staticParser.getDifferent());
             GameAction.getAction();
+        }
+    }
+
+    /**
+     * Updates Health if the player is located in the gym
+     * @param location the current location of the player
+     */
+    public static void updateHealthWhenInGym(String location) {
+        if(location.equals("Gym")) {
+            System.out.println("Your health has now increased!");
+            player.setHealth(100);
         }
     }
 

@@ -17,6 +17,7 @@ import java.util.List;
 
 public class PointSystem {
 
+    private static SoundEffects soundEffects = SoundEffects.getInstance();
     private File pointSystemJson = new File("Banner/pointsystem.json");
     private ObjectMapper mapper = new ObjectMapper();
     private static File staticPointSystemJson = new File("Banner/pointsystem.json");
@@ -114,7 +115,8 @@ public class PointSystem {
             updateReportCard(player.getCredit() + " " + player.getGrade(), player);
 
             System.out.println(staticParser.getCongratulations() + player.getGrade() + staticParser.getYear());
-            SoundEffects.movingToNextGrade();   // Plays 'congratulatory' sound effect
+            // Access SoundEffects
+            soundEffects.movingToNextGrade();   // Plays 'congratulatory' sound effect
             isNewLevel = true;
             switch (player.getGrade()) {
                 case FRESHMAN:
