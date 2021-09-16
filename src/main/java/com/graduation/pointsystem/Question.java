@@ -87,6 +87,7 @@ public class Question {
             }
             int counter = 0;
             //loop through the questions
+
             for (QuestionDetail sample : samples) {
                 //assign the current question to currentQuestion class variable
                 currentQuestion = sample;
@@ -95,6 +96,9 @@ public class Question {
                 System.out.println(Jsoup.parse(sample.getQuestion()).text());
                 List<String> answers = new ArrayList<>();
                 answers.add(sample.getCorrect_answer());
+                String correctAnswerKey = sample.getCorrect_answer();
+                char correctAnswerChar = correctAnswerKey.charAt(0);
+                char correctAnswerValue;
                 for (Object incorrect : sample.getIncorrect_answers()) {
                     answers.add(incorrect.toString());
                 }
@@ -127,35 +131,84 @@ public class Question {
                     return 0;
                 }
 
-                char chosen = ' ';
-                //while user response does not meet certain criteria, keep asking
-                while (userChoice.compareTo("") == 0 || !possible_answers.keySet().contains(userChoice.toUpperCase().charAt(0))) {
-                    System.out.println(textparser.getOptions() + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
-                    userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
-                    if (userChoice.matches(textparser.getQuit())) {
-                        return 0;
+                char chosen = userChoice.charAt(0);
+                //acceptable answer logic for multiple choice questions
+                if (answers.size() == 4) {
+                    while (userChoice.compareTo("") == 0 || !possible_answers.containsKey(userChoice.toUpperCase().charAt(0))) {
+                        System.out.println(textparser.getOptions() + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
+                        userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
+                        if (userChoice.matches(textparser.getQuit())) {
+                            return 0;
+                        }
+                    }
+                    if (possible_answers.get(chosen).compareTo(Jsoup.parse(sample.getCorrect_answer()).text()) == 0) {
+                        System.out.println(getRandomElement(correct));
+                        SoundEffects.correctAnswer();   // Plays 'positive' sound effect
+                        counter += 1;
+                        System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                    }
+                    else {
+                        System.out.println(textparser.getIncorrect() + sample.getCorrect_answer());
+                        SoundEffects.incorrectAnswer(); // Plays 'negative' sound effect
+                        System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+
                     }
                 }
-                chosen = userChoice.charAt(0);
-                if (possible_answers.get(chosen).compareTo(Jsoup.parse(sample.getCorrect_answer()).text()) == 0) {
-                    System.out.println(getRandomElement(correct));
-                    //Access SoundEffects
-                    soundEffects.correctAnswer();   // Plays 'positive' sound effect
-                    counter += 1;
-                    System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
-                } else {
-                    System.out.println(textparser.getIncorrect() + sample.getCorrect_answer());
-                    //Access SoundEffects
-                    soundEffects.incorrectAnswer(); // Plays 'negative' sound effect
-                    System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                //acceptable answer logic for True False questions
+                if (answers.size() == 2) {
+                    while (userChoice.compareTo("") == 0 || !possible_answers.containsKey(userChoice.toUpperCase().charAt(0))) {
+                        if (userChoice.equals("TRUE") || userChoice.equals("FALSE")) {
+                            break;
+                        }
+                        else if (userChoice.length() == 1 && chosen == 'F') {
+                            break;
+                        }
+                        else if(userChoice.length() == 1 && chosen == 'T') {
+                            break;
+                        }
+                        System.out.println(textparser.getOptions() + "[A, B, True, False, T, or F]");
 
+                        userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
+                        if (userChoice.matches(textparser.getQuit())) {
+                            return 0;
+                        }
+                    }
+
+                    if (correctAnswerKey.equals("True")) {
+                        correctAnswerValue = 'A';
+                    }
+                    else {
+                        correctAnswerValue = 'B';
+                    }
+
+                    if(userChoice.equals(correctAnswerKey.toUpperCase())) {
+                        System.out.println(getRandomElement(correct));
+                        SoundEffects.correctAnswer();   // Plays 'positive' sound effect
+                        counter += 1;
+                        System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                    }
+
+                    else if (correctAnswerValue == chosen) {
+                        System.out.println(getRandomElement(correct));
+                        SoundEffects.correctAnswer();   // Plays 'positive' sound effect
+                        counter += 1;
+                        System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                    }
+                    else if(String.valueOf(correctAnswerChar).equals(String.valueOf(chosen))) {
+                        System.out.println(getRandomElement(correct));
+                        SoundEffects.correctAnswer();   // Plays 'positive' sound effect
+                        counter += 1;
+                        System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                    }
+                    else {
+                        System.out.println(textparser.getIncorrect() + sample.getCorrect_answer());
+                        SoundEffects.incorrectAnswer(); // Plays 'negative' sound effect
+                        System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                    }
                 }
                 counter = counter - cheatCounter;
-//                System.out.println();
-
             }
             return counter;
         }
     }
-
 }
