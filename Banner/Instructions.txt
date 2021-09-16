@@ -1,12 +1,14 @@
-Hello student!
-The next four years of your life will be the most exciting times of your life.
-Your first task is to answer as many questions correctly as you can.  
-You need a 2.0 to graduate.
-Go around each classroom and answer the teacher’s question.
-You may be rewarded with special items.
-Also, avoid the bathroom.
-At any point in the game,
-you can press 'S', 'H', or 'Q.'
-'S' will give the players status.
-'H' will give helpful tips.
-'Q' Will force the game to quit.
+<html>
+<p>Hello student!
+<p>The next four years of your life will be the most exciting times of your life.
+<p>Your first task is to answer as many questions correctly as you can.
+<p>You need a 2.0 to graduate.
+<p>Go around each classroom and answer the teacher’s question.
+<p>You may be rewarded with special items.
+<p>Also, avoid the bathroom.
+<p>At any point in the game,
+<p>you can press 'S', 'H', or 'Q.'
+<p>'S' will give the players status.
+<p>'H' will give helpful tips.
+<p>'Q' Will force the game to quit.</p>
+</html>

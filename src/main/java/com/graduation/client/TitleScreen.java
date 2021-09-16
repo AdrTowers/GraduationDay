@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 
-class TitleScreen {
+public class TitleScreen {
     //Fields
     private static String banner;
     Scanner titleObj = new Scanner(System.in);

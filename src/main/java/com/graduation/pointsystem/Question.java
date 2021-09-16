@@ -7,6 +7,7 @@ import com.graduation.utils.Grade;
 import com.graduation.utils.Prompter;
 import com.graduation.utils.SoundEffects;
 import com.graduation.utils.readMap;
+import com.graduation.view.ViewWindow;
 import org.jsoup.Jsoup;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -34,6 +35,9 @@ public class Question {
     private File questionJson = new File("Banner/question.json");
     private ObjectMapper mapper = new ObjectMapper();
     SoundEffects soundEffects = SoundEffects.getInstance();
+    private ViewWindow viewWindow = ViewWindow.getInstance();
+    private StringBuilder sb = new StringBuilder();
+
 
     public static QuestionDetail getCurrentQuestion() {
         return currentQuestion;
@@ -78,7 +82,7 @@ public class Question {
         } else {
             Prompter.clearScreen();
             //System.out.println(GameClient.getPlayer());
-            System.out.println(readMap.convertedMap());
+            viewWindow.updateSchoolPanel(readMap.convertedMap());
             List<QuestionDetail> samples = null;
             try {
                 samples = getQuestions(type, level);
@@ -92,7 +96,7 @@ public class Question {
                 currentQuestion = sample;
                 cheatCounter = 0;
                 Map<Character, String> possible_answers = new LinkedHashMap<>();
-                System.out.println(Jsoup.parse(sample.getQuestion()).text());
+                viewWindow.updateInputPanel(Jsoup.parse(sample.getQuestion()).text());
                 List<String> answers = new ArrayList<>();
                 answers.add(sample.getCorrect_answer());
                 for (Object incorrect : sample.getIncorrect_answers()) {
@@ -119,7 +123,7 @@ public class Question {
                 //assign the current set of answers to the class variable currentAnswer
                 currentAnswer = possible_answers;
                 for (Map.Entry<Character, String> options : possible_answers.entrySet()) {
-                    System.out.println(options.getKey() + ") " + options.getValue());
+                    viewWindow.updateInputPanel(options.getKey() + ") " + options.getValue());
                 }
                 //get user response
                 String userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
@@ -130,7 +134,7 @@ public class Question {
                 char chosen = ' ';
                 //while user response does not meet certain criteria, keep asking
                 while (userChoice.compareTo("") == 0 || !possible_answers.keySet().contains(userChoice.toUpperCase().charAt(0))) {
-                    System.out.println(textparser.getOptions() + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
+                    viewWindow.updateInputPanel(textparser.getOptions() + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
                     userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
                     if (userChoice.matches(textparser.getQuit())) {
                         return 0;
@@ -138,16 +142,17 @@ public class Question {
                 }
                 chosen = userChoice.charAt(0);
                 if (possible_answers.get(chosen).compareTo(Jsoup.parse(sample.getCorrect_answer()).text()) == 0) {
-                    System.out.println(getRandomElement(correct));
-                    //Access SoundEffects
-                    soundEffects.correctAnswer();   // Plays 'positive' sound effect
+
+                       // Plays 'positive' sound effect
+
+                    viewWindow.updateInputPanel(getRandomElement(correct));
+                    soundEffects.correctAnswer();  // Plays 'positive' sound effect
                     counter += 1;
-                    System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                    viewWindow.updateInputPanel(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
                 } else {
-                    System.out.println(textparser.getIncorrect() + sample.getCorrect_answer());
-                    //Access SoundEffects
+                    viewWindow.updateInputPanel(textparser.getIncorrect() + sample.getCorrect_answer());
                     soundEffects.incorrectAnswer(); // Plays 'negative' sound effect
-                    System.out.println(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
+                    viewWindow.updateInputPanel(counter + textparser.getOutof() + samples.size() + textparser.getQuestions());
 
                 }
                 counter = counter - cheatCounter;

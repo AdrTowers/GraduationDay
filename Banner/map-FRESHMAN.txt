@@ -1,11 +1,13 @@
-############   MAP   #######################################   Status   #######
-#  Direction                                     ##
-#    NORTH               Gym %s -- Geography %s  ##    Player: %s
-#      ^                               |         ##
-#                                  Hallway %s    ##    Grade: %s
-#                                      |         ##
-#    Maths %s ---- Cafeteria %s --- History %s   ##    Credit: %s
-#      |                                         ##
-#  Computers %s                                  ##    Health: %s
-#                                                ##
-###############################################################################
+<html>
+<p>############   MAP   #######################################   Status   #######</p>
+<p>#  Direction                                     ##</p>
+<p>#    NORTH               Gym %s -- Geography %s  ##    Player: %s</p>
+<p>#      ^                               |         ##</p>
+<p>#                                  Hallway %s    ##    Grade: %s</p>
+<p>#                                      |         ##</p>
+<p>#    Maths %s ---- Cafeteria %s --- History %s   ##    Credit: %s</p>
+<p>#      |                                         ##</p>
+<p>#  Computers %s                                  ##    Health: %s</p>
+<p>#                                                ##</p>
+<p>###############################################################################</p>
+<html>

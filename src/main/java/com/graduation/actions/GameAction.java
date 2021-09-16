@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.graduation.client.GameClient;
 import com.graduation.utils.Prompter;
 import com.graduation.utils.readMap;
+import com.graduation.view.ViewWindow;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -11,7 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class GameAction {
+    private static ViewWindow viewWindow;
     private static Scanner action = new Scanner(System.in);
     private static File gameActionJson = new File("Banner/gameaction.json");
     private static ObjectMapper mapper = new ObjectMapper();
@@ -27,9 +30,10 @@ public class GameAction {
 
 
     public static void getAction() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        viewWindow = ViewWindow.getInstance();
         Prompter.clearScreen();
         //System.out.println(GameClient.getPlayer());
-        System.out.println(readMap.convertedMap());
+        viewWindow.updateSchoolPanel(readMap.convertedMap());
         String move = GameClient.getPrompter().prompt(textparser.getEnterMove());
         String[] moveArray = move.toLowerCase().split(" ");
         

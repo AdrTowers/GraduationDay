@@ -7,11 +7,14 @@ import com.graduation.actions.GameCombat;
 import com.graduation.elements.Bully;
 import com.graduation.elements.Player;
 import com.graduation.pointsystem.PointSystem;
+import com.graduation.utils.GameTextParser;
 import com.graduation.utils.Grade;
 import com.graduation.utils.Prompter;
+import com.graduation.view.ViewWindow;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,6 +24,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameClient {
+    private static ViewWindow viewWindow;
+    private GameTextParser gameTextParser;
     private static Prompter prompter;
     private static Player player;
     private static Bully bully;
@@ -44,9 +49,14 @@ public class GameClient {
         }
     }
 
-    public GameClient(Prompter prompter) throws IOException {
-        this.prompter = prompter;
+//    public GameClient(Prompter prompter) throws IOException {
+//        this.prompter = prompter;
+//    }
+
+    public GameClient() throws IOException {
+        this.viewWindow = ViewWindow.getInstance();
     }
+
     public void initialize() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         player = setPlayer();
         bully = setBully();
@@ -82,7 +92,7 @@ public class GameClient {
                 int combat = (int)(Math.random() * 100);
                     //You have a 50% chance of a bully not being there.
                 if(combat >= 50){
-                    System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
+                    viewWindow.updateInputPanel(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
                     //Engage in combat
                     GameCombat.initializeCombatScene();
                 }else {
@@ -91,7 +101,7 @@ public class GameClient {
             }
             //Catch if the direction is null
         }catch(NullPointerException e){
-            System.out.println(staticParser.getDifferent());
+            viewWindow.updateInputPanel(staticParser.getDifferent());
             GameAction.getAction();
         }
     }
@@ -116,21 +126,21 @@ public class GameClient {
                 //If the room does have an item check if player already has it!
                 if(player.getInventory().contains(filteredData.asText())){
                     //View to tell the user that they grabbed the room item already
-                    System.out.println(staticParser.getNoitems() + filteredData + "\n");
+                    viewWindow.updateInputPanel(staticParser.getNoitems() + filteredData + "\n");
                     continueJourney(false);
                 }else{
                     //Method to add the item to the player's bookbag
                     List<String> items = player.getInventory();
                     items.add(filteredData.textValue());
-                    System.out.println(staticParser.getSuccessfull() + filteredData + staticParser.getBackpack());
+                    viewWindow.updateInputPanel(staticParser.getSuccessfull() + filteredData + staticParser.getBackpack());
                     continueJourney(false);
                 }
             }else{
-                System.out.println(filteredData);
+                viewWindow.updateInputPanel(filteredData.asText());
             }
         }catch(IOException e){
 
-            System.out.println(e);
+            viewWindow.updateInputPanel(e.toString());
         }
     }
 
@@ -141,7 +151,7 @@ public class GameClient {
             getLevelDetails("desc");
             PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
         }else{
-            System.out.println(staticParser.getNextmove());
+            viewWindow.updateInputPanel(staticParser.getNextmove());
             GameAction.getAction();
         }
     }
@@ -168,21 +178,44 @@ public class GameClient {
             //Step 4: Send back the first part which is the init location for the level
            return arrOfStr[0];
         }catch(IOException e){
-            System.out.println(staticParser.getWrong() + e);
+            viewWindow.updateInputPanel(staticParser.getWrong() + e);
             return "Computers"; //default value
         }
     }
 
     //Initialize the bully
     public Bully setBully() {
-        String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
+        viewWindow.updateInputPanel(textparser.getPlease());
+        String bullyName = "testBully";
+        //String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
         return new Bully(bullyName, 100, true);
     }
 
     //Initialize the player as a FRESHMAN aka first level
     public Player setPlayer() {
-        String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
-        return new Player(userName, 0, 100, Grade.FRESHMAN, "Computers");
+            Player [] player = {new Player("", 0, 100, Grade.FRESHMAN, "Computers")};
+            viewWindow.updateInputPanel(textparser.getEntername());
+            viewWindow.inputField.setBorder(BorderFactory.createTitledBorder("Enter Player"));
+            viewWindow.inputField.addActionListener(e -> {
+
+                String userName =viewWindow.inputField.getText();
+
+            try {
+                gameTextParser.parseText(userName);
+               //return new Player(userName, 0, 100, Grade.FRESHMAN, "Computers");
+            } catch (LineUnavailableException ex) {
+                ex.printStackTrace();
+            } catch (UnsupportedAudioFileException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            viewWindow.inputField.setText("");
+
+        });
+            //String userName = "testPlayer";
+        //String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
+        return new Player("userName", 0, 100, Grade.FRESHMAN, "Computers");
     }
 
     public static Player getPlayer() {

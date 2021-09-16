@@ -1,6 +1,8 @@
 package com.graduation.client;
 
+import com.graduation.utils.GameTextParser;
 import com.graduation.utils.Prompter;
+import com.graduation.view.ViewWindow;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -10,29 +12,21 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class GraduationDayApplicationClient {
-    private static String banner;
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
-        System.out.println();
-        System.out.println(readTXT("introtext"));
-        System.out.println();
+//        System.out.println();
+//        System.out.println(readTXT("introtext"));
+//        System.out.println();
+//
+//        TitleScreen.displayInstructions();
 
-        TitleScreen.displayInstructions();
-
-        Prompter prompter = new Prompter(new Scanner(System.in));
-        GameClient game = new GameClient(prompter);
-        game.initialize();
+        ViewWindow.getInstance();
+        //Prompter prompter = new Prompter(new Scanner(System.in));
+        GameClient game = new GameClient();
+        //game.initialize();
     }
 
-    public static String readTXT(String name) {
 
-        try {
-            banner = Files.readString(Path.of("Banner/" + name + ".txt"));
-        } catch (IOException e) {
-
-        }
-        return banner;
-    }
 }
 
 

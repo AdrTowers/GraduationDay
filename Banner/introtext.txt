@@ -1,6 +1,8 @@
-GRADUATION DAY
-Team Members:
- Hongyi Qu
- Jauric Flowers
- Pierre Gober
- Stephen Yeboah
+<html>
+<p>  GRADUATION DAY
+<p>  Team Members: </p>
+<p>  Hongyi Qu </p>
+<p>  Jauric Flowers </p>
+<p>  Pierre Gober </p>
+<p>  Stephen Yeboah </p>
+</html>
