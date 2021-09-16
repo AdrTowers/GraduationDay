@@ -10,7 +10,7 @@
   "multipleChoice":"For multiple choice questions enter A, B, C, or D.\n",
   "forTF":"For true or false questions enter A for True or B for False.",
   "multiple":"For multiple choice questions enter A, B, C, or D.\n",
-  "tf":"For true or false questions enter A for True or B for False.",
+  "tf":"For true or false questions enter A, B, True, False, T or F.",
   "save":"Do you want to save before exiting? (yes/no)",
   "look":"You take a look around.",
   "caught":"You have been caught and your answer is incorrect.",
