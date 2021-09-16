@@ -23,8 +23,8 @@ import java.util.concurrent.ExecutionException;
 
 public class Question {
     public static final Map<String, Integer> categories =
-            Map.of("maths", 19, "history", 23, "geography", 22, "sports", 21, "general knowledge", 9
-                    , "computers", 18);
+            Map.of("math", 19, "history", 23, "geography", 22, "sports", 21, "general knowledge", 9
+                    , "computers", 18, "mythology", 20);
     private static final Map<Grade, String> difficulties = Map.of(Grade.FRESHMAN, "easy", Grade.SOPHOMORE, "easy", Grade.JUNIOR, "medium",
             Grade.SENIOR, "hard");
     public static int cheatCounter = 0;
@@ -39,11 +39,9 @@ public class Question {
         return currentQuestion;
     }
 
-
     public static Map<Character, String> getCurrentAnswer() {
         return currentAnswer;
     }
-
 
     //public static boolean isHacked = false;
 

@@ -43,7 +43,7 @@ public class PointSystem {
     private static List<String> notSubject = new ArrayList<>(Arrays.asList("gym", "cafeteria", "hallway"));
     private static final int GRADE = 4;
     private static double player_total_grade = 0;
-    private static final List<String> core = new ArrayList<>(Arrays.asList("maths", "computers", "geography", "history"));
+    private static final List<String> core = new ArrayList<>(Arrays.asList("math", "computers", "geography", "history", "mythology"));
     private static boolean isNewLevel = false;
     public static Player currentPlayer=null;
 
@@ -90,7 +90,7 @@ public class PointSystem {
                     //determine if the player has meet the criteria to change its level
                     //from freshman->sophomore->junior->senior
                     //based on a gpa greater than or equal to 2.0 and having taken all the core
-                    //subjects i.e. maths,computers,history and geography
+                    //subjects i.e. math,computers,history and geography
                     //reset the taken subject list
                     changePlayerGrade(player);
                     System.out.println(staticParser.getGrade() + player.getGrade() + "\n");

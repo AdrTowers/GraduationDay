@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class GameCombat {
     private static Scanner action = new Scanner(System.in);
     private static final ObjectMapper mapper = new ObjectMapper();
-    private static int bullyHitPoints = (int)(Math.random() * 25);
+    private static int bullyHitPoints = (int)(Math.random() * 35);
     private static JsonNode data;
 
     private static File gameCombatJson = new File("Banner/gamecombat.json");
