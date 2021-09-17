@@ -43,9 +43,10 @@ public class PointSystem {
     private static List<String> notSubject = new ArrayList<>(Arrays.asList("gym", "cafeteria", "hallway"));
     private static final int GRADE = 4;
     private static double player_total_grade = 0;
-    private static final List<String> core = new ArrayList<>(Arrays.asList("math", "computers", "geography", "history", "mythology"));
+    private static final List<String> core = new ArrayList<>(Arrays.asList("math", "computers", "geography", "history"));
+    private static List<String> elective = new ArrayList<>(Arrays.asList("mythology"));
     private static boolean isNewLevel = false;
-    public static Player currentPlayer=null;
+    public static Player currentPlayer = null;
 
     private double getScore(int correct) {
         double current_class = 0;
@@ -106,38 +107,56 @@ public class PointSystem {
         // System.out.println(Arrays.toString(player.getSubjectTaken().toArray(new String[0])));
     }
 
+    /**
+     * Decides whether the player meets the criteria to move to the next grade
+     * @param player
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public static void changePlayerGrade(Player player) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Step 1: Determine if we can go to the next grade level
         if (player.getSubjectTaken().containsAll(core) && player.getCredit() >= 2.0) {
-            //display a congratulation message on moving to the next grade
-
-            // Writes GPA and grade to report_card.txt
-            updateReportCard(player.getCredit() + " " + player.getGrade(), player);
-
-            System.out.println(staticParser.getCongratulations() + player.getGrade() + staticParser.getYear());
-            // Access SoundEffects
-            soundEffects.movingToNextGrade();   // Plays 'congratulatory' sound effect
-            isNewLevel = true;
-            switch (player.getGrade()) {
-                case FRESHMAN:
-                    player.setGrade(Grade.SOPHOMORE);
-                    break;
-                case SOPHOMORE:
-                    player.setGrade(Grade.JUNIOR);
-                    break;
-                case JUNIOR:
-                    player.setGrade(Grade.SENIOR);
-            }
-           //Step 2: Clear the subjects that we passed from the player
-            player.getSubjectTaken().clear();
-            //Step 3: Get the first location of the next level
-            player.setLocation(GameClient.getFirstLocation());
-            //reset the GPA for the new level to zero
-            player_total_grade = 0;
-            //Step 4: Toggle the bully
-            Bully.setPresence(true);
-            Bully.setHealth(100);
+            moveToNextGrade(player);
+        } else if (player.getSubjectTaken().size() == 4 && player.getSubjectTaken().containsAll(elective) && player.getCredit() >= 2.0){
+            moveToNextGrade(player);
         }
+    }
+
+    /**
+     * Moves the player to the following grade
+     * @param player
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
+    private static void moveToNextGrade(Player player) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        // Writes GPA and grade to report_card.txt
+        updateReportCard(player.getCredit() + " " + player.getGrade(), player);
+        //display a congratulation message on moving to the next grade
+        System.out.println(staticParser.getCongratulations() + player.getGrade() + staticParser.getYear());
+        // Access SoundEffects
+        soundEffects.movingToNextGrade();   // Plays 'congratulatory' sound effect
+        isNewLevel = true;
+        switch (player.getGrade()) {
+            case FRESHMAN:
+                player.setGrade(Grade.SOPHOMORE);
+                break;
+            case SOPHOMORE:
+                player.setGrade(Grade.JUNIOR);
+                break;
+            case JUNIOR:
+                player.setGrade(Grade.SENIOR);
+        }
+        //Step 2: Clear the subjects that we passed from the player
+        player.getSubjectTaken().clear();
+        //Step 3: Get the first location of the next level
+        player.setLocation(GameClient.getFirstLocation());
+        //reset the GPA for the new level to zero
+        player_total_grade = 0;
+        //Step 4: Toggle the bully
+        Bully.setPresence(true);
+        Bully.setHealth(100);
     }
 
     /**
