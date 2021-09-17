@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class GameCombat {
+    private static Player player = Player.getInstance();
     private static Scanner action = new Scanner(System.in);
     private static final ObjectMapper mapper = new ObjectMapper();
     private static int bullyHitPoints = (int)(Math.random() * 35);
@@ -44,10 +45,10 @@ public class GameCombat {
     }
 
     public static void fight() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        if (Player.getHealth() <= 0) {
+        if (player.getHealth() <= 0) {
             //Step 1: You get a report card stolen
-            String reportCard = Player.getSubjectTaken().remove(0);             //remove first entry, store the string for later
-            Player.setSubjectTaken(Player.getSubjectTaken());                         //pass back the List to the method
+            String reportCard = player.getSubjectTaken().remove(0);             //remove first entry, store the string for later
+            player.setSubjectTaken(player.getSubjectTaken());                         //pass back the List to the method
             //Step 2: Dialogue for the user
             System.out.println(textparser.getStole()+ reportCard + textparser.getAgain());
             //Step 3: Remove the bully for this level
@@ -58,13 +59,13 @@ public class GameCombat {
             //System.out.println(GameClient.getPlayer());
             System.out.println(readMap.convertedMap());
             System.out.println(textparser.getStars());
-            System.out.println(textparser.getHealthPoints() + Player.getHealth());
+            System.out.println(textparser.getHealthPoints() + player.getHealth());
             System.out.println(textparser.getBullyHealth() + Bully.getHealth());
             System.out.println(textparser.getStars());
             System.out.println(textparser.getCommands());
             System.out.println(textparser.getStars());
-            System.out.println(Player.getName() + textparser.getBookbag());
-            for (String item : Player.getInventory()) {
+            System.out.println(player.getName() + textparser.getBookbag());
+            for (String item : player.getInventory()) {
                 System.out.println(item);
             }
             System.out.println(textparser.getStars());
@@ -81,8 +82,8 @@ public class GameCombat {
                         GameAction.getAction();
                     }else{
                         //Massive damage if caught trying to run
-                        int rightHook = Player.getHealth() - 50 ;
-                        Player.setHealth(rightHook);
+                        int rightHook = player.getHealth() - 50 ;
+                        player.setHealth(rightHook);
                         System.out.println(textparser.getNotLucky());
                         fight();
                     }
@@ -111,9 +112,9 @@ public class GameCombat {
                     break;
                 case "use":
                     try{
-                        if (Player.getInventory().contains(moveArray[1])) {
+                        if (player.getInventory().contains(moveArray[1])) {
                             //Step 1: remove the item
-                            Player.getInventory().remove(moveArray[1]);
+                            player.getInventory().remove(moveArray[1]);
                             //Step 2: RNG for result -- 90% of a good ending, 10% chance the item has no effect
                             if((Math.random() * 100) > 10){
                                 //Step 2a: Print the item desc
@@ -162,8 +163,8 @@ public class GameCombat {
 
     public static void bullyAttack(){
         //Step 1: Set the player health minus the bully strike
-        int punch = Player.getHealth() - bullyHitPoints ;
-        Player.setHealth(punch);
+        int punch = player.getHealth() - bullyHitPoints ;
+        player.setHealth(punch);
         //Step 2: Conditional dialogue
         if(bullyHitPoints > 50) {
             System.out.println(textparser.getMassiveDamage() + bullyHitPoints + textparser.getToYou());
