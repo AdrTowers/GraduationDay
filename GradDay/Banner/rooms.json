@@ -4,7 +4,7 @@
       "north": "Maths",
       "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class "
     },
-    "Maths": {
+    "Math": {
       "east": "Cafeteria",
       "desc": "Mrs.Peterson's Maths class... omg I'm in trouble"
     },
@@ -41,7 +41,7 @@
       "north": "Maths",
       "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class "
     },
-    "Maths": {
+    "Math": {
       "west": "Cafeteria",
       "south": "Computers",
       "north": "Hallway",
@@ -93,7 +93,7 @@
       "south": "Gym",
       "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class "
     },
-    "Maths": {
+    "Math": {
       "south": "History",
       "north": "Cafeteria",
       "desc": "Mrs.Peterson's Maths class... omg I'm in trouble"
@@ -118,7 +118,7 @@
     }
   },
   "SENIOR":{
-    "Maths": {
+    "Math": {
       "north": "Cafeteria",
       "desc": "Mrs.Peterson's Maths class... omg I'm in trouble"
     },

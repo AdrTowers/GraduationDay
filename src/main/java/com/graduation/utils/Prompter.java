@@ -43,7 +43,7 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Prompter {
-    private Player player;
+    private Player player = Player.getInstance();
     private File prompterJson = new File("Banner/prompter.json");
     private ObjectMapper mapper = new ObjectMapper();
     PrompterParser textparser = mapper.readValue(prompterJson, PrompterParser.class);
@@ -92,7 +92,6 @@ public class Prompter {
     }
 
     public String prompt(String promptText) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-        player = Player.getInstance();
         String response;
         while (true) {
             System.out.print(promptText);
@@ -100,7 +99,7 @@ public class Prompter {
             if (response.matches("s")) {
                 //add function to show player status
                 System.out.println(GameClient.getPlayer().getGrade().toString());
-                System.out.println(readMap.convertedMap());
+                //System.out.println(readMap.convertedMap());
                 String subjectList = textparser.getSubejects();
                 for (String subject : player.getSubjectTaken()) {
                     subjectList += subject + "; ";
@@ -111,12 +110,13 @@ public class Prompter {
                 //give player a helpful message
 
                 //display the current question to remind the user to answer it
-                if (Question.getCurrentQuestion() != null) {
-                    System.out.println(Jsoup.parse(Question.getCurrentQuestion().getQuestion()).text());
-                    for (Map.Entry<Character, String> options : Question.getCurrentAnswer().entrySet()) {
-                        System.out.println(options.getKey() + ") " + options.getValue());
-                    }
-                }
+                //Errors: When not in class and use "s" reprints the first question in subjectsTaken
+//                if (Question.getCurrentQuestion() != null) {
+//                    System.out.println(Jsoup.parse(Question.getCurrentQuestion().getQuestion()).text());
+//                    for (Map.Entry<Character, String> options : Question.getCurrentAnswer().entrySet()) {
+//                        System.out.println(options.getKey() + ") " + options.getValue());
+//                    }
+//                }
             } else if (response.matches("help|h")) {
                 System.out.println("\n***************************************************************");
                 System.out.println(textparser.getHelp() +
@@ -189,17 +189,17 @@ public class Prompter {
     }
 
     private void hackClass() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        String currentLocation = PointSystem.currentPlayer.getLocation().toLowerCase();
+        String currentLocation = player.getLocation().toLowerCase();
         //check if the current room is not a non-subject room
         if (!PointSystem.getNotSubject().contains(currentLocation)) {
             //check if the list of subject taken contains the current room
-            if (PointSystem.currentPlayer.getSubjectTaken().contains(currentLocation)) {
+            if (player.getSubjectTaken().contains(currentLocation)) {
                 System.out.println(textparser.getTaken() + currentLocation);
             } else {
-                PointSystem.currentPlayer.getSubjectTaken().add(currentLocation);
+                player.getSubjectTaken().add(currentLocation);
                 //default 2.4 GPA if you hack
-                PointSystem.currentPlayer.setCredit(new PointSystem().getCumulativeScore(3, PointSystem.currentPlayer.getSubjectTaken().size()));
-                PointSystem.changePlayerGrade(PointSystem.currentPlayer);
+                player.setCredit(new PointSystem().getCumulativeScore(3, player.getSubjectTaken().size()));
+                PointSystem.changePlayerGrade();
             }
 
 
@@ -221,7 +221,7 @@ public class Prompter {
     private void saveCurrentState() {
         ObjectMapper save = new ObjectMapper();
         try {
-            save.writeValue(new File("storage.txt"), save.writeValueAsString(PointSystem.currentPlayer));
+            save.writeValue(new File("storage.txt"), save.writeValueAsString(player));
         } catch (JsonProcessingException ex) {
             ex.printStackTrace();
         } catch (IOException e) {

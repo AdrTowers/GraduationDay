@@ -59,7 +59,7 @@ public class GameClient {
             continueJourney(false);
         }else{
             //Step 2b -- Call method to initialize the question sequence
-            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade(),player);
+            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
         }
 
 
@@ -77,7 +77,7 @@ public class GameClient {
 
             //Determine if it's a subject room
             if(!notSubject.contains(nextLoc.toLowerCase())){
-                PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade(),player);
+                PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
             }else{
                 //Step 1: random number generator to see if a bully will engage in combat
                 int combat = (int)(Math.random() * 100);
@@ -140,7 +140,7 @@ public class GameClient {
         //Have a conditional that switch when it's a new level
         if(val){
             getLevelDetails("desc");
-            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade(),player);
+            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
         }else{
             System.out.println(staticParser.getNextmove());
             GameAction.getAction();
