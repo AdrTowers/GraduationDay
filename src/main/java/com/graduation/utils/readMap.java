@@ -22,7 +22,7 @@ public class readMap {
         mapCode.put("Mythology", "  ");
         mapCode.put("Hallway", "  ");
         mapCode.put("Grade", String.valueOf(player.getGrade()));
-        mapCode.put("Maths", "  ");
+        mapCode.put("Math", "  ");
         mapCode.put("Credit", String.valueOf(GameClient.getPlayer().getCredit()));
         mapCode.put("Cafeteria", "  ");
         mapCode.put("History", "  ");
@@ -48,7 +48,7 @@ public class readMap {
             mapCode.replace(GameClient.getPlayer().getLocation(), "\uD83C\uDF93");
             newMap = String.format(map, mapCode.get("Gym"), mapCode.get("Geography"),
                     mapCode.get("Player"), mapCode.get("History"), mapCode.get("Hallway"),
-                    mapCode.get("Grade"), mapCode.get("Cafeteria"), mapCode.get("Maths"),
+                    mapCode.get("Grade"), mapCode.get("Cafeteria"), mapCode.get("Math"),
                     mapCode.get("Credit"), mapCode.get("Computers"), mapCode.get("Health"));
         } else if (player.getGrade() == Grade.JUNIOR) {
             healthHearts = determineHealthHearts();
