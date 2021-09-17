@@ -48,31 +48,36 @@ public class GameClient {
         this.prompter = prompter;
     }
     public void initialize() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        player = setPlayer();
+        setPlayer();
         setBully();
+
         //Step 1 -- Generate the location info from the json
         getLevelDetails("desc");
 
         //Step 2a -- Some conditional seeing if its is a subject
-        if(Player.getLocation().equals("cafeteria") || Player.getLocation().equals("gym") || Player.getLocation().equals("hallway")){
+        if(player.getLocation().equals("cafeteria") || player.getLocation().equals("gym") || player.getLocation().equals("hallway")){
             continueJourney(false);
         }else{
             //Step 2b -- Call method to initialize the question sequence
-            PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
+            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade(),player);
         }
+
+
     }
 
     public static void nextLocation(String location) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Grab the previous and read the location according to direction within it's JSON properties
         try{
-
             String nextLoc = prevRoom.get(location).textValue();
+            System.out.println(nextLoc);
             player.setLocation(nextLoc);
             getLevelDetails("desc");
+            updateHealthWhenInGym(nextLoc);
+
 
             //Determine if it's a subject room
             if(!notSubject.contains(nextLoc.toLowerCase())){
-                PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
+                PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade(),player);
             }else{
                 //Step 1: random number generator to see if a bully will engage in combat
                 int combat = (int)(Math.random() * 100);
@@ -92,11 +97,22 @@ public class GameClient {
         }
     }
 
+    /**
+     * Updates Health if the player is located in the gym
+     * @param location the current location of the player
+     */
+    public static void updateHealthWhenInGym(String location) {
+        if(location.equals("Gym")) {
+            System.out.println("Your health has now increased!");
+            player.setHealth(100);
+        }
+    }
+
     public static void getLevelDetails(String key) throws LineUnavailableException, UnsupportedAudioFileException {
         try{
             data = mapper.readTree(Files.readAllBytes(Paths.get("Banner/rooms.json")));
-            prevRoom = getLastRoom(data, Player.getLocation(), Player.getGrade());
-            JsonNode filteredData = getDetails(data, Player.getLocation(), Player.getGrade(), key);
+            prevRoom = getLastRoom(data, player.getLocation(), player.getGrade());
+            JsonNode filteredData = getDetails(data, player.getLocation(), player.getGrade(), key);
             if(key.equals("item")){
                 //If the room does have an item check if player already has it!
                 if(player.getInventory().contains(filteredData.asText())){
@@ -124,7 +140,7 @@ public class GameClient {
         //Have a conditional that switch when it's a new level
         if(val){
             getLevelDetails("desc");
-            PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
+            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade(),player);
         }else{
             System.out.println(staticParser.getNextmove());
             GameAction.getAction();
@@ -146,7 +162,7 @@ public class GameClient {
             //Step 1: Read our JSON file
             data = mapper.readTree(Files.readAllBytes(Paths.get("Banner/rooms.json")));
             //Step 2: Access to my level
-            String node = String.valueOf(data.get(String.valueOf(Player.getGrade())));
+            String node = String.valueOf(data.get(String.valueOf(player.getGrade())));
             //Step 3: Spilt to get my location string
             String strNew = node.replace("{\"", "");
             String[] arrOfStr = strNew.split("\"", 2);
@@ -168,9 +184,14 @@ public class GameClient {
     }
 
     //Initialize the player as a FRESHMAN aka first level
-    public Player setPlayer() {
+    public void setPlayer() {
+        player = Player.getInstance();
         String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
-        return new Player(userName, 0, 100, Grade.FRESHMAN, "Computers");
+        player.setName(userName);
+        player.setCredit(0);
+        player.setHealth(100);
+        player.setGrade(Grade.FRESHMAN);
+        player.setLocation("Computers");
     }
 
     public static Player getPlayer() {
