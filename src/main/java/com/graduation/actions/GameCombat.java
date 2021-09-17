@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class GameCombat {
+    private static Bully bully = Bully.getInstance();
     private static Scanner action = new Scanner(System.in);
     private static final ObjectMapper mapper = new ObjectMapper();
     private static int bullyHitPoints = (int)(Math.random() * 25);
@@ -39,7 +40,7 @@ public class GameCombat {
         //System.out.println(GameClient.getPlayer());
         System.out.println(readMap.convertedMap());
         System.out.println(textparser.getStars());
-        System.out.println(Bully.getName() + textparser.getSpotted());
+        System.out.println(bully.getName() + textparser.getSpotted());
         fight();
     }
 
@@ -51,7 +52,7 @@ public class GameCombat {
             //Step 2: Dialogue for the user
             System.out.println(textparser.getStole()+ reportCard + textparser.getAgain());
             //Step 3: Remove the bully for this level
-            Bully.setPresence(false);
+            bully.setPresence(false);
 
         }else{
             Prompter.clearScreen();
@@ -59,7 +60,7 @@ public class GameCombat {
             System.out.println(readMap.convertedMap());
             System.out.println(textparser.getStars());
             System.out.println(textparser.getHealthPoints() + Player.getHealth());
-            System.out.println(textparser.getBullyHealth() + Bully.getHealth());
+            System.out.println(textparser.getBullyHealth() + bully.getHealth());
             System.out.println(textparser.getStars());
             System.out.println(textparser.getCommands());
             System.out.println(textparser.getStars());
@@ -90,7 +91,7 @@ public class GameCombat {
                 case "fight":
                     //Step 1: RNG for number with just your fists && Negate the points from the Bully's health-- allows for a one hit kill
                     int kick = (int)(Math.random() * 100);
-                    Bully.setHealth(Bully.getHealth() - kick);
+                    bully.setHealth(bully.getHealth() - kick);
                     //Step 2: Conditional dialogue
                     if(kick > 80) {
                         System.out.println(textparser.getKicked() + kick + textparser.getDamage());
@@ -100,8 +101,8 @@ public class GameCombat {
                         System.out.println(textparser.getWow() + kick + textparser.getToTheBully());
                     }
                     //Step 3: Recursion if needed
-                    if(Bully.getHealth() <= 0){
-                        System.out.println(textparser.getDefeated() + Bully.getName() + textparser.getHooray());
+                    if(bully.getHealth() <= 0){
+                        System.out.println(textparser.getDefeated() + bully.getName() + textparser.getHooray());
                         GameAction.getAction();
                     }else{
                         //Bully's turn;
@@ -119,17 +120,17 @@ public class GameCombat {
                                 //Step 2a: Print the item desc
                                 getItemDesc(moveArray[1]);
                                     //***Bully defeated*
-                                Bully.setHealth(0);
+                                bully.setHealth(0);
                                 //Toggle the bully presence var
-                                Bully.setPresence(false);
+                                bully.setPresence(false);
                                 //Get the next action
                                 GameAction.getAction();
                             }else{
                                 //Step 2b: Bully was unaffected by the item
-                                System.out.println(Bully.getName() + textparser.getUnaffected() + moveArray[1]);
+                                System.out.println(bully.getName() + textparser.getUnaffected() + moveArray[1]);
                             }
                             //Step 4: Snap to the Bully response if still health points left
-                            if(Bully.getHealth() > 0){
+                            if(bully.getHealth() > 0){
                                 System.out.println(textparser.getHit());
                                 bullyAttack();
                             }

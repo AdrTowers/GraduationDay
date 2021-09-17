@@ -49,7 +49,7 @@ public class GameClient {
     }
     public void initialize() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         player = setPlayer();
-        bully = setBully();
+        setBully();
         //Step 1 -- Generate the location info from the json
         getLevelDetails("desc");
 
@@ -159,9 +159,12 @@ public class GameClient {
     }
 
     //Initialize the bully
-    public Bully setBully() {
+    public void setBully() {
+        bully = Bully.getInstance();
         String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
-        return new Bully(bullyName, 100, true);
+        bully.setName(bullyName);
+        bully.setHealth(100);
+        bully.setPresence(true);
     }
 
     //Initialize the player as a FRESHMAN aka first level
