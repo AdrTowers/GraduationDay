@@ -40,6 +40,7 @@ public class PointSystem {
         return notSubject;
     }
 
+    private static Bully bully = Bully.getInstance();
     private static List<String> notSubject = new ArrayList<>(Arrays.asList("gym", "cafeteria", "hallway"));
     private static final int GRADE = 4;
     private static double player_total_grade = 0;
@@ -135,8 +136,8 @@ public class PointSystem {
             //reset the GPA for the new level to zero
             player_total_grade = 0;
             //Step 4: Toggle the bully
-            Bully.setPresence(true);
-            Bully.setHealth(100);
+            bully.setPresence(true);
+            bully.setHealth(100);
         }
     }
 
