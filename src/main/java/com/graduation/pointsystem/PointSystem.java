@@ -24,6 +24,14 @@ public class PointSystem {
     private static ObjectMapper mapperStatic = new ObjectMapper();
     PointSystemParser textparser = mapper.readValue(pointSystemJson, PointSystemParser.class);
     static PointSystemParser staticParser;
+    private static Bully bully = Bully.getInstance();
+    private static List<String> notSubject = new ArrayList<>(Arrays.asList("gym", "cafeteria", "hallway"));
+    private static final int GRADE = 4;
+    private static double player_total_grade = 0;
+    private static final List<String> core = new ArrayList<>(Arrays.asList("math", "computers", "geography", "history"));
+    private static List<String> elective = new ArrayList<>(Arrays.asList("mythology"));
+    private static boolean isNewLevel = false;
+    public static Player player = Player.getInstance();
 
     static {
         try {
@@ -40,15 +48,6 @@ public class PointSystem {
         return notSubject;
     }
 
-    private static Bully bully = Bully.getInstance();
-    private static List<String> notSubject = new ArrayList<>(Arrays.asList("gym", "cafeteria", "hallway"));
-    private static final int GRADE = 4;
-    private static double player_total_grade = 0;
-    private static final List<String> core = new ArrayList<>(Arrays.asList("math", "computers", "geography", "history"));
-    private static List<String> elective = new ArrayList<>(Arrays.asList("mythology"));
-    private static boolean isNewLevel = false;
-    public static Player currentPlayer=null;
-
     private double getScore(int correct) {
         double current_class = 0;
         current_class += ((correct / (double) 5) * GRADE);
@@ -61,8 +60,7 @@ public class PointSystem {
         return Double.parseDouble(new DecimalFormat(textparser.getFormat()).format(player_total_grade / (double) numberOfSubjects));
     }
 
-    public static void teacherQuestions(String subject, Grade level, Player player) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        currentPlayer=player;
+    public static void teacherQuestions(String subject, Grade level) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         if (!player.getSubjectTaken().contains(subject)) {
             Question questions = new Question();
             if(player.getSubjectTaken().size()==0){
@@ -94,7 +92,7 @@ public class PointSystem {
                     //based on a gpa greater than or equal to 2.0 and having taken all the core
                     //subjects i.e. math,computers,history and geography
                     //reset the taken subject list
-                    changePlayerGrade(player);
+                    changePlayerGrade();
                     System.out.println(staticParser.getGrade() + player.getGrade() + "\n");
                 }
             }
@@ -110,28 +108,26 @@ public class PointSystem {
 
     /**
      * Decides whether the player meets the criteria to move to the next grade
-     * @param player
      * @throws UnsupportedAudioFileException
      * @throws IOException
      * @throws LineUnavailableException
      */
-    public static void changePlayerGrade(Player player) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void changePlayerGrade() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Step 1: Determine if we can go to the next grade level
         if (player.getSubjectTaken().containsAll(core) && player.getCredit() >= 2.0) {
-            moveToNextGrade(player);
+            moveToNextGrade();
         } else if (player.getSubjectTaken().size() == 4 && player.getSubjectTaken().containsAll(elective) && player.getCredit() >= 2.0){
-            moveToNextGrade(player);
+            moveToNextGrade();
         }
     }
 
     /**
      * Moves the player to the following grade
-     * @param player
      * @throws UnsupportedAudioFileException
      * @throws IOException
      * @throws LineUnavailableException
      */
-    private static void moveToNextGrade(Player player) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    private static void moveToNextGrade() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         // Writes GPA and grade to report_card.txt
         updateReportCard(player.getCredit() + " " + player.getGrade(), player);
         //display a congratulation message on moving to the next grade
@@ -156,8 +152,8 @@ public class PointSystem {
         //reset the GPA for the new level to zero
         player_total_grade = 0;
         //Step 4: Toggle the bully
-        Bully.setPresence(true);
-        Bully.setHealth(100);
+        bully.setPresence(true);
+        bully.setHealth(100);
     }
 
     /**

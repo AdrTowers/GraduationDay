@@ -2,9 +2,9 @@
 #  Direction                                     ##
 #    NORTH             Gym %s ---- Geography %s  ##    Player: %s
 #      ^                |              |         ##
-#                 Mythology %s --- Hallway %s    ##    Grade: %s
+#             (e) Mythology %s --- Hallway %s    ##    Grade: %s
 #                                      |         ##
-#    Math  %s ---- Cafeteria %s --- History %s   ##    Credit: %s
+#    Math %s ---- Cafeteria %s --- History %s    ##    Credit: %s
 #      |                                         ##
 #  Computers %s                                  ##    Health: %s
 #                                                ##

@@ -6,8 +6,8 @@
 #                  |              |                ##
 #               Hallway %s --- Geography %s        ##    Credit: %s
 #                  |              |                ##
-#              Mythology %s -- Cafeteria %s        ##    Health: %s
+#          (e) Mythology %s -- Cafeteria %s        ##    Health: %s
 #                                 |                ##
-#                               Math  %s           ##
+#                                Math %s           ##
 #                                                  ##
 ###############################################################################

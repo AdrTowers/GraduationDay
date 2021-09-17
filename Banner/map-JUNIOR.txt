@@ -1,6 +1,6 @@
 ############   MAP   #######################################   Status   #######
 #  Direction                                       ##
-#    NORTH        Mythology %s -- Computers %s     ##    Player: %s
+#    NORTH     (e) Mythology %s -- Computers %s    ##    Player: %s
 #      ^               |            |              ##
 #                   Hallway %s ↔↔↔ Gym %s          ##    Grade: %s
 #                      |                           ##

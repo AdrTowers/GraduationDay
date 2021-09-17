@@ -49,7 +49,8 @@ public class readMap {
             newMap = String.format(map, mapCode.get("Gym"), mapCode.get("Geography"),
                     mapCode.get("Player"), mapCode.get("History"), mapCode.get("Hallway"),
                     mapCode.get("Grade"), mapCode.get("Cafeteria"), mapCode.get("Math"),
-                    mapCode.get("Credit"), mapCode.get("Computers"), mapCode.get("Health"));
+                    mapCode.get("Credit"), mapCode.get("Mythology"), mapCode.get("Computers"),
+                    mapCode.get("Health"));
         } else if (player.getGrade() == Grade.JUNIOR) {
             healthHearts = determineHealthHearts();
             mapCode.put("Health", healthHearts);
