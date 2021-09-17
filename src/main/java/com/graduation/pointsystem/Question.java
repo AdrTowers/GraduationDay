@@ -131,6 +131,11 @@ public class Question {
                     return 0;
                 }
 
+                if (userChoice.matches("hint"))  { //quit
+                    System.out.println(sample.getIncorrect_answers());
+                }
+
+
                 char chosen = userChoice.charAt(0);
                 //acceptable answer logic for multiple choice questions
                 if (answers.size() == 4) {

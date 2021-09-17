@@ -12,6 +12,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
@@ -154,11 +155,10 @@ public class Prompter {
                     System.out.println("Volume un-muted.");
                 soundEffects.setVolume(unmute);
             } else if (response.matches("cheat")) {
-                //if random integer between 1-10 is even then the user will get the question wrong
+//                if random integer between 1-10 is even then the user will get the question wrong
                 if (((getRandomNumber(10) % 2) == 0)) {
                     System.out.println(textparser.getCaught());
                     Question.cheatCounter++;
-
                 } else {
                     System.out.println(Question.getCurrentQuestion().getCorrect_answer());
                 }
@@ -167,6 +167,17 @@ public class Prompter {
                 //get the current room
                 hackClass();
                 return "quit";
+                // gets a hint of incorrect answers
+            } else if (response.matches("hint")) {
+                System.out.println("You ask another classmate for some help...");
+                System.out.println("The answer is NOT...");
+
+                Random rand = new Random();
+                List incorrect_answers = Question.getCurrentQuestion().getIncorrect_answers();
+                int randomIndex = rand.nextInt(incorrect_answers.size());
+                // Outputs a random answers from incorrect answers list
+                System.out.println(incorrect_answers.get(randomIndex));
+
             } else if (response.matches("quit")) {
                 //get the current room
                 return "quit";
