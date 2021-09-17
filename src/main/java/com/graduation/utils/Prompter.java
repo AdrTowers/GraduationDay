@@ -42,6 +42,7 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Prompter {
+    private Player player;
     private File prompterJson = new File("Banner/prompter.json");
     private ObjectMapper mapper = new ObjectMapper();
     PrompterParser textparser = mapper.readValue(prompterJson, PrompterParser.class);
@@ -90,7 +91,7 @@ public class Prompter {
     }
 
     public String prompt(String promptText) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-
+        player = Player.getInstance();
         String response;
         while (true) {
             System.out.print(promptText);
@@ -100,7 +101,7 @@ public class Prompter {
                 System.out.println(GameClient.getPlayer().getGrade().toString());
                 System.out.println(readMap.convertedMap());
                 String subjectList = textparser.getSubejects();
-                for (String subject : Player.getSubjectTaken()) {
+                for (String subject : player.getSubjectTaken()) {
                     subjectList += subject + "; ";
                 }
                 System.out.println(subjectList);
