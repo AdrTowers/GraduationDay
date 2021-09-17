@@ -40,13 +40,14 @@ public class PointSystem {
         return notSubject;
     }
 
+    private static Bully bully = Bully.getInstance();
     private static List<String> notSubject = new ArrayList<>(Arrays.asList("gym", "cafeteria", "hallway"));
     private static final int GRADE = 4;
     private static double player_total_grade = 0;
     private static final List<String> core = new ArrayList<>(Arrays.asList("math", "computers", "geography", "history"));
     private static List<String> elective = new ArrayList<>(Arrays.asList("mythology"));
     private static boolean isNewLevel = false;
-    public static Player currentPlayer = null;
+    public static Player currentPlayer=null;
 
     private double getScore(int correct) {
         double current_class = 0;
