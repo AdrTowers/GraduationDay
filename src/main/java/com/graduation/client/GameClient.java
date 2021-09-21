@@ -9,10 +9,13 @@ import com.graduation.elements.Player;
 import com.graduation.pointsystem.PointSystem;
 import com.graduation.utils.Grade;
 import com.graduation.utils.Prompter;
+import com.graduation.utils.SoundEffects;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -67,22 +70,22 @@ public class GameClient {
 
     public static void nextLocation(String location) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Grab the previous and read the location according to direction within it's JSON properties
-        try{
-            String nextLoc = prevRoom.get(location).textValue();
-            System.out.println(nextLoc);
-            player.setLocation(nextLoc);
-            getLevelDetails("desc");
-            updateHealthWhenInGym(nextLoc);
+        if(!player.getGrade().equals(Grade.GRADUATE)) {
+            try{
+                String nextLoc = prevRoom.get(location).textValue();
+                System.out.println(nextLoc);
+                player.setLocation(nextLoc);
+                getLevelDetails("desc");
+                updateHealthWhenInGym(nextLoc);
 
 
-            //Determine if it's a subject room
-            if(!notSubject.contains(nextLoc.toLowerCase())){
-                PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
-            }else{
-                //Step 1: random number generator to see if a bully will engage in combat
-                int combat = (int)(Math.random() * 100);
+                //Determine if it's a subject room
+                if(!notSubject.contains(nextLoc.toLowerCase())){
+                    PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
+                }else{
+                    //Step 1: random number generator to see if a bully will engage in combat
+                    int combat = (int)(Math.random() * 100);
                     //You have a 50% chance of a bully not being there.
-
                 if(combat >= 60){
                     System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
                     //Engage in combat
@@ -91,12 +94,13 @@ public class GameClient {
                 }else {
                     continueJourney(false);
                 }
+                //Catch if the direction is null
+            }catch(NullPointerException e){
+                System.out.println(staticParser.getDifferent());
+                GameAction.getAction();
             }
-            //Catch if the direction is null
-        }catch(NullPointerException e){
-            System.out.println(staticParser.getDifferent());
-            GameAction.getAction();
         }
+
     }
 
     /**
@@ -140,13 +144,37 @@ public class GameClient {
     //Method to initialize the action to move
     public static void continueJourney(boolean val) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Have a conditional that switch when it's a new level
-        if(val){
-            getLevelDetails("desc");
-            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
-        }else{
-            System.out.println(staticParser.getNextmove());
-            GameAction.getAction();
+        if(player.getGrade().equals(Grade.GRADUATE)) {
+            playerDidGraduate();
+        } else {
+            if(val){
+                getLevelDetails("desc");
+                PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
+            }else{
+                System.out.println(staticParser.getNextmove());
+                GameAction.getAction();
+            }
         }
+
+    }
+
+    private static void playerDidGraduate() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        System.out.println("\n### Grade Report ###");
+        System.out.println("GPA Year");
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader("report_card.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("See you next year in...COLLEGE DAY!");
     }
 
     //Gets the description of the current room
