@@ -114,36 +114,71 @@ public class GameCombat {
                     }
                     break;
                 case "use":
-                    try{
-                        if (player.getInventory().contains(moveArray[1])) {
-                            //Step 1: remove the item
-                            player.getInventory().remove(moveArray[1]);
-                            //Step 2: RNG for result -- 90% of a good ending, 10% chance the item has no effect
-                            if((Math.random() * 100) > 10){
-                                //Step 2a: Print the item desc
-                                getItemDesc(moveArray[1]);
+                    if (moveArray.length == 2 ){
+                        try{
+                            if (player.getInventory().contains(moveArray[1])) {
+                                //Step 1: remove the item
+                                player.getInventory().remove(moveArray[1]);
+                                //Step 2: RNG for result -- 90% of a good ending, 10% chance the item has no effect
+                                if((Math.random() * 100) > 10){
+                                    //Step 2a: Print the item desc
+                                    getItemDesc(moveArray[1]);
                                     //***Bully defeated*
-                                bully.setHealth(0);
-                                //Toggle the bully presence var
-                                bully.setPresence(false);
-                                //Get the next action
-                                GameAction.getAction();
-                            }else{
-                                //Step 2b: Bully was unaffected by the item
-                                System.out.println(bully.getName() + textparser.getUnaffected() + moveArray[1]);
+                                    bully.setHealth(0);
+                                    //Toggle the bully presence var
+                                    bully.setPresence(false);
+                                    //Get the next action
+                                    GameAction.getAction();
+                                }else{
+                                    //Step 2b: Bully was unaffected by the item
+                                    System.out.println(bully.getName() + textparser.getUnaffected() + moveArray[1]);
+                                }
+                                //Step 4: Snap to the Bully response if still health points left
+                                if(bully.getHealth() > 0){
+                                    System.out.println(textparser.getHit());
+                                    bullyAttack();
+                                }
+                            } else {
+                                System.out.println(textparser.getYouDont() + moveArray[1] + textparser.getInYourBag());
+                                fight();
                             }
-                            //Step 4: Snap to the Bully response if still health points left
-                            if(bully.getHealth() > 0){
-                                System.out.println(textparser.getHit());
-                                bullyAttack();
-                            }
-                        } else {
-                            System.out.println(textparser.getYouDont() + moveArray[1] + textparser.getInYourBag());
+                        }catch(ArrayIndexOutOfBoundsException e){
+                            System.out.println(textparser.getNotYourBag());
                             fight();
                         }
-                    }catch(ArrayIndexOutOfBoundsException e){
-                        System.out.println(textparser.getNotYourBag());
-                        fight();
+                    } else if (moveArray.length == 3){
+                        String moveArr = moveArray[1] + " " + moveArray[2];
+                        try{
+                            if (player.getInventory().contains(moveArr)) {
+                                //Step 1: remove the item
+                                player.getInventory().remove(moveArr);
+                                //Step 2: RNG for result -- 90% of a good ending, 10% chance the item has no effect
+                                if((Math.random() * 100) > 10){
+                                    //Step 2a: Print the item desc
+                                    getItemDesc(moveArr);
+                                    //***Bully defeated*
+                                    bully.setHealth(0);
+                                    //Toggle the bully presence var
+                                    bully.setPresence(false);
+                                    //Get the next action
+                                    GameAction.getAction();
+                                }else{
+                                    //Step 2b: Bully was unaffected by the item
+                                    System.out.println(bully.getName() + textparser.getUnaffected() + moveArray[1]);
+                                }
+                                //Step 4: Snap to the Bully response if still health points left
+                                if(bully.getHealth() > 0){
+                                    System.out.println(textparser.getHit());
+                                    bullyAttack();
+                                }
+                            } else {
+                                System.out.println(textparser.getYouDont() + moveArr + textparser.getInYourBag());
+                                fight();
+                            }
+                        }catch(ArrayIndexOutOfBoundsException e){
+                            System.out.println(textparser.getNotYourBag());
+                            fight();
+                        }
                     }
                     break;
                 default:

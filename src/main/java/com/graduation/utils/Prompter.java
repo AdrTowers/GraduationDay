@@ -104,7 +104,13 @@ public class Prompter {
                 for (String subject : player.getSubjectTaken()) {
                     subjectList += subject + "; ";
                 }
+                //  Added option to list items in your Back Pack
+                String backpack = textparser.getInventory();
+                for (String item : player.getInventory()){
+                    backpack += item + "; ";
+                }
                 System.out.println(subjectList);
+                System.out.println(backpack);
                 System.out.println(" ");
                 //blank line
                 //give player a helpful message

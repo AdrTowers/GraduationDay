@@ -120,7 +120,7 @@ public class GameClient {
                     System.out.println(staticParser.getNoitems() + filteredData + "\n");
                     continueJourney(false);
                 }else{
-                    //Method to add the item to the player's bookbag
+                    //Method to add the item to the player's Book Bag
                     List<String> items = player.getInventory();
                     items.add(filteredData.textValue());
                     System.out.println(staticParser.getSuccessfull() + filteredData + staticParser.getBackpack());
@@ -177,8 +177,20 @@ public class GameClient {
     //Initialize the bully
     public void setBully() {
         bully = Bully.getInstance();
-        String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
-        bully.setName(bullyName);
+        while (true){
+            String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
+            try{
+                if (bullyName == null || bullyName.isBlank()){
+                    System.out.println("Please enter a valid name **");
+                } else {
+                    bully.setName(bullyName);
+                    System.out.println("The bully's name is: " + bullyName + "\n");
+                    break;
+                }
+            } catch (StringIndexOutOfBoundsException e){
+                System.out.println("Please enter a valid name **");
+            }
+        }
         bully.setHealth(100);
         bully.setPresence(true);
     }
@@ -186,8 +198,20 @@ public class GameClient {
     //Initialize the player as a FRESHMAN aka first level
     public void setPlayer() {
         player = Player.getInstance();
-        String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
-        player.setName(userName);
+        while (true){
+            String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
+            try{
+                if (userName == null || userName.isBlank()){
+                    System.out.println("Please enter a valid name **");
+                } else {
+                    player.setName(userName);
+                    System.out.println("Your name is: " + userName + "\n");
+                    break;
+                }
+            } catch (StringIndexOutOfBoundsException e){
+                System.out.println("Please enter a valid name **");
+            }
+        }
         player.setCredit(0);
         player.setHealth(100);
         player.setGrade(Grade.FRESHMAN);

@@ -17,5 +17,6 @@
   "look":"You take a look around.",
   "caught":"You have been caught and your answer is incorrect.",
   "taken":"You have already taken ",
-  "subejects": "Subjects Taken: "
+  "subejects": "Subjects Taken: ",
+  "inventory": "Backpack: "
 }
