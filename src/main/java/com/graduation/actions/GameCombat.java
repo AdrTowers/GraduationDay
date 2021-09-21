@@ -44,6 +44,7 @@ public class GameCombat {
         System.out.println(textparser.getStars());
         System.out.println(bully.getName() + textparser.getSpotted());
         fight();
+
     }
 
     public static void fight() throws UnsupportedAudioFileException, IOException, LineUnavailableException {

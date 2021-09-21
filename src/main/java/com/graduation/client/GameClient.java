@@ -82,9 +82,11 @@ public class GameClient {
                 //Step 1: random number generator to see if a bully will engage in combat
                 int combat = (int)(Math.random() * 100);
                     //You have a 50% chance of a bully not being there.
-                if(combat >= 50){
+
+                if(combat >= 60){
                     System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
                     //Engage in combat
+                    bully.setHealth(100);
                     GameCombat.initializeCombatScene();
                 }else {
                     continueJourney(false);
