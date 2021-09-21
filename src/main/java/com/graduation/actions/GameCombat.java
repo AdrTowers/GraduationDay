@@ -133,10 +133,12 @@ public class GameCombat {
                                 }else{
                                     //Step 2b: Bully was unaffected by the item
                                     System.out.println(bully.getName() + textparser.getUnaffected() + moveArray[1]);
+                                    // Bully HIT3 you
+                                    bullyAttack();
                                 }
                                 //Step 4: Snap to the Bully response if still health points left
                                 if(bully.getHealth() > 0){
-                                    System.out.println(textparser.getHit());
+                                    //System.out.println(textparser.getHit());
                                     bullyAttack();
                                 }
                             } else {
