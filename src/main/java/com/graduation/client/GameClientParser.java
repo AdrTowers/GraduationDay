@@ -14,6 +14,9 @@ class GameClientParser {
     private String hole;
     private String entername;
     private String trashcan;
+    private String nameError;
+    private String bullyName;
+    private String yourName;
 
     public String getUhoh() {
         return uhoh;
@@ -61,5 +64,17 @@ class GameClientParser {
 
     public String getTrashcan() {
         return trashcan;
+    }
+
+    public String getNameError() {
+        return nameError;
+    }
+
+    public String getBullyName() {
+        return bullyName;
+    }
+
+    public String getYourName() {
+        return yourName;
     }
 }

@@ -32,7 +32,8 @@ public class GameAction {
         System.out.println(readMap.convertedMap());
         String move = GameClient.getPrompter().prompt(textparser.getEnterMove());
         String[] moveArray = move.toLowerCase().split(" ");
-        
+
+        // ArrayIndexOutOfBoundsException
         switch (moveArray[0]) {
             case "go":
                 if (moveArray[1].equals(textparser.getNorth()) || moveArray[1].equals(textparser.getSouth()) || moveArray[1].equals(textparser.getEast()) || moveArray[1].equals(textparser.getWest())) {

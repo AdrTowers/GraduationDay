@@ -4,9 +4,10 @@ Your first task is to answer as many questions correctly as you can.
 You need a 2.0 to graduate.
 Go around each classroom and answer the teacher’s question.
 You may be rewarded with special items.
-Also, avoid the bathroom.
-At any point in the game,
-you can press 'S', 'H', or 'Q.'
+Electives are labeled - (e)
+You can take one elective class in lieu of a core class
+or take all core classes to move on to the next grade.
+At any point in the game, you can press 'S', 'H', or 'Q.'
 'S' will give the players status.
 'H' will give helpful tips.
 'Q' Will force the game to quit.

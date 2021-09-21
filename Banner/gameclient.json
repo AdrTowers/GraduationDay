@@ -10,5 +10,8 @@
   "please":"Please enter bully name below \n",
   "hole":"this is a hole to put bully in",
   "entername":"Please enter your name below \n",
-  "trashcan":"this is a trashCAN to put player in"
+  "trashcan":"this is a trashCAN to put player in",
+  "nameError" : "** Please enter a valid name **",
+  "bullyName": "The Bully's name is: ",
+  "yourName": "Your name is: "
 }
