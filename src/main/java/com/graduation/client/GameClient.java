@@ -181,14 +181,14 @@ public class GameClient {
             String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
             try{
                 if (bullyName == null || bullyName.isBlank()){
-                    System.out.println("Please enter a valid name **");
+                    System.out.println(textparser.getNameError());
                 } else {
                     bully.setName(bullyName);
-                    System.out.println("The bully's name is: " + bullyName + "\n");
+                    System.out.println(textparser.getBullyName() + bullyName + "\n");
                     break;
                 }
             } catch (StringIndexOutOfBoundsException e){
-                System.out.println("Please enter a valid name **");
+                System.out.println(textparser.getNameError());
             }
         }
         bully.setHealth(100);
@@ -202,14 +202,14 @@ public class GameClient {
             String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
             try{
                 if (userName == null || userName.isBlank()){
-                    System.out.println("Please enter a valid name **");
+                    System.out.println(textparser.getNameError());
                 } else {
                     player.setName(userName);
-                    System.out.println("Your name is: " + userName + "\n");
+                    System.out.println(textparser.getYourName() + userName + "\n");
                     break;
                 }
             } catch (StringIndexOutOfBoundsException e){
-                System.out.println("Please enter a valid name **");
+                System.out.println(textparser.getNameError());
             }
         }
         player.setCredit(0);
