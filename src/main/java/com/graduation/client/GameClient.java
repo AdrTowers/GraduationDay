@@ -82,17 +82,18 @@ public class GameClient {
                 //Determine if it's a subject room
                 if(!notSubject.contains(nextLoc.toLowerCase())){
                     PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
-                }else{
-                    //Step 1: random number generator to see if a bully will engage in combat
-                    int combat = (int)(Math.random() * 100);
-                    //You have a 50% chance of a bully not being there.
-                if(combat >= 60){
-                    System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
-                    //Engage in combat
-                    bully.setHealth(100);
-                    GameCombat.initializeCombatScene();
                 }else {
-                    continueJourney(false);
+                    //Step 1: random number generator to see if a bully will engage in combat
+                    int combat = (int) (Math.random() * 100);
+                    //You have a 50% chance of a bully not being there.
+                    if (combat >= 60) {
+                        System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
+                        //Engage in combat
+                        bully.setHealth(100);
+                        GameCombat.initializeCombatScene();
+                    } else {
+                        continueJourney(false);
+                    }
                 }
                 //Catch if the direction is null
             }catch(NullPointerException e){
@@ -126,7 +127,7 @@ public class GameClient {
                     System.out.println(staticParser.getNoitems() + filteredData + "\n");
                     continueJourney(false);
                 }else{
-                    //Method to add the item to the player's bookbag
+                    //Method to add the item to the player's Book Bag
                     List<String> items = player.getInventory();
                     items.add(filteredData.textValue());
                     System.out.println(staticParser.getSuccessfull() + filteredData + staticParser.getBackpack());
@@ -207,8 +208,20 @@ public class GameClient {
     //Initialize the bully
     public void setBully() {
         bully = Bully.getInstance();
-        String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
-        bully.setName(bullyName);
+        while (true){
+            String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
+            try{
+                if (bullyName == null || bullyName.isBlank()){
+                    System.out.println(textparser.getNameError());
+                } else {
+                    bully.setName(bullyName);
+                    System.out.println(textparser.getBullyName() + bullyName + "\n");
+                    break;
+                }
+            } catch (StringIndexOutOfBoundsException e){
+                System.out.println(textparser.getNameError());
+            }
+        }
         bully.setHealth(100);
         bully.setPresence(true);
     }
@@ -216,8 +229,20 @@ public class GameClient {
     //Initialize the player as a FRESHMAN aka first level
     public void setPlayer() {
         player = Player.getInstance();
-        String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
-        player.setName(userName);
+        while (true){
+            String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
+            try{
+                if (userName == null || userName.isBlank()){
+                    System.out.println(textparser.getNameError());
+                } else {
+                    player.setName(userName);
+                    System.out.println(textparser.getYourName() + userName + "\n");
+                    break;
+                }
+            } catch (StringIndexOutOfBoundsException e){
+                System.out.println(textparser.getNameError());
+            }
+        }
         player.setCredit(0);
         player.setHealth(100);
         player.setGrade(Grade.FRESHMAN);

@@ -21,6 +21,7 @@ class PrompterParser {
     private String subejects;
     private String mute;
     private String unmute;
+    private String inventory;
 
     public String getHelp() {
         return help;
@@ -96,5 +97,9 @@ class PrompterParser {
 
     public String getUnmute() {
         return unmute;
+    }
+
+    public String getInventory() {
+        return inventory;
     }
 }
