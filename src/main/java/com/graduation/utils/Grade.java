@@ -4,5 +4,6 @@ public enum Grade {
     FRESHMAN,
     SOPHOMORE,
     JUNIOR,
-    SENIOR;
+    SENIOR,
+    GRADUATE
 }

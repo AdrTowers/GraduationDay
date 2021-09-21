@@ -2,9 +2,9 @@ package com.graduation.elements;
 
 public class Bully {
     private static Bully instance = null;
-    private static String name;
-    private static int health;
-    private static boolean presence;
+    private String name;
+    private int health;
+    private boolean presence;
 
     private Bully() {
 

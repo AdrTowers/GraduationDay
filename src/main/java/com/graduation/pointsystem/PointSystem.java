@@ -101,9 +101,13 @@ public class PointSystem {
             System.out.println(staticParser.getPassed() + subject);
             //GameClient.continueJourney(isNewLevel);
         }
-        GameClient.continueJourney(isNewLevel);
-        //see the class list
-        // System.out.println(Arrays.toString(player.getSubjectTaken().toArray(new String[0])));
+
+        if(!player.getGrade().equals(Grade.GRADUATE)) {
+            GameClient.continueJourney(isNewLevel);
+            //see the class list
+            // System.out.println(Arrays.toString(player.getSubjectTaken().toArray(new String[0])));
+        }
+
     }
 
     /**
@@ -144,16 +148,22 @@ public class PointSystem {
                 break;
             case JUNIOR:
                 player.setGrade(Grade.SENIOR);
+                break;
+            case SENIOR:
+                player.setGrade(Grade.GRADUATE);
+                break;
         }
-        //Step 2: Clear the subjects that we passed from the player
-        player.getSubjectTaken().clear();
-        //Step 3: Get the first location of the next level
-        player.setLocation(GameClient.getFirstLocation());
-        //reset the GPA for the new level to zero
-        player_total_grade = 0;
-        //Step 4: Toggle the bully
-        bully.setPresence(true);
-        bully.setHealth(100);
+        if(!player.getGrade().equals(Grade.GRADUATE)) {
+            //Step 2: Clear the subjects that we passed from the player
+            player.getSubjectTaken().clear();
+            //Step 3: Get the first location of the next level
+            player.setLocation(GameClient.getFirstLocation());
+            //reset the GPA for the new level to zero
+            player_total_grade = 0;
+            //Step 4: Toggle the bully
+            bully.setPresence(true);
+            bully.setHealth(100);
+        }
     }
 
     /**
