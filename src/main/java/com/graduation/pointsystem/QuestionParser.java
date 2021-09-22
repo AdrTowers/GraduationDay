@@ -7,6 +7,7 @@ public class QuestionParser {
     private String incorrect;
     private String quit;
     private String outof;
+    private String help;
 
     public String getOptions() {
         return options;
@@ -28,4 +29,7 @@ public class QuestionParser {
         return outof;
     }
 
+    public String getHelp() {
+        return help;
+    }
 }

@@ -1,32 +1,43 @@
 package com.graduation.elements;
 
 public class Bully {
-    private static String name;
-    private static int health;
-    private static boolean presence;
+    private static Bully instance = null;
+    private String name;
+    private int health;
+    private boolean presence;
 
-    public Bully(String name, int health, boolean presence){
-        this.name = name;
-        this.health = health;
-        this.presence = presence;
+    private Bully() {
+
     }
-    public static String getName() {
+
+    public static Bully getInstance() {
+        if (instance == null) {
+            instance = new Bully();
+        }
+        return instance;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public static int getHealth() {
+    public String setName(String name) {
+        return this.name = name;
+    }
+
+    public int getHealth() {
         return health;
     }
 
-    public static void setHealth(int health) {
-        Bully.health = health;
+    public int setHealth(int health) {
+        return this.health = health;
     }
 
     public boolean getPresence() {
         return presence;
     }
 
-    public static void setPresence(boolean newPresence) {
+    public void setPresence(boolean newPresence) {
          presence = newPresence;
     }
 }

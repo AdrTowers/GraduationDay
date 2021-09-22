@@ -4,8 +4,8 @@
 #      ^           |            |                  ##
 #              History %s --- Hallway %s           ##    Grade: %s
 #                  |            |                  ##
-#             Cafeteria %s -- Maths %s             ##    Credit: %s
-#                               |                  ##
-#                           Computers %s           ##    Health: %s
+#             Cafeteria %s -- Math %s              ##    Credit: %s
+#                  |            |                  ##
+#         (e) Mythology %s -- Computers %s         ##    Health: %s
 #                                                  ##
 ###############################################################################

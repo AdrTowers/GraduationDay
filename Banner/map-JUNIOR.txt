@@ -1,12 +1,12 @@
 ############   MAP   #######################################   Status   #######
 #  Direction                                       ##
-#    NORTH                      Computers %s       ##    Player: %s
-#      ^                            |              ##
-#                   Hallway %s ↔↔↔ Gym %s         ##    Grade: %s
+#    NORTH     (e) Mythology %s -- Computers %s    ##    Player: %s
+#      ^               |            |              ##
+#                   Hallway %s ↔↔↔ Gym %s          ##    Grade: %s
 #                      |                           ##
 #                  Cafeteria %s                    ##    Credit: %s
 #                      |                           ##
-#                    Maths %s                      ##    Health: %s
+#                    Math  %s                      ##    Health: %s
 #                      |                           ##
 #   Geography %s  -- History %s                    ##
 #                                                  ##

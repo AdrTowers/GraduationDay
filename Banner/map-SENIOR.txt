@@ -5,9 +5,9 @@
 #               History %s  ---- Gym %s            ##    Grade: %s
 #                  |              |                ##
 #               Hallway %s --- Geography %s        ##    Credit: %s
+#                  |              |                ##
+#          (e) Mythology %s -- Cafeteria %s        ##    Health: %s
 #                                 |                ##
-#                              Cafeteria %s        ##    Health: %s
-#                                 |                ##
-#                               Maths %s           ##
+#                                Math %s           ##
 #                                                  ##
 ###############################################################################

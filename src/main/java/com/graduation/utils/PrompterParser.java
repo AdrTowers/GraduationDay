@@ -13,12 +13,14 @@ class PrompterParser {
     private String multipleChoice;
     private String forTF;
     private String multiple;
-    private String tf;
     private String save;
     private String look;
     private String caught;
     private String taken;
     private String subejects;
+    private String mute;
+    private String unmute;
+    private String inventory;
 
     public String getHelp() {
         return help;
@@ -64,10 +66,6 @@ class PrompterParser {
         return multiple;
     }
 
-    public String getTf() {
-        return tf;
-    }
-
     public String getSave() {
         return save;
     }
@@ -86,5 +84,17 @@ class PrompterParser {
 
     public String getSubejects() {
         return subejects;
+    }
+
+    public String getMute() {
+        return mute;
+    }
+
+    public String getUnmute() {
+        return unmute;
+    }
+
+    public String getInventory() {
+        return inventory;
     }
 }

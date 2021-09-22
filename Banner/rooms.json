@@ -1,17 +1,17 @@
 {
   "FRESHMAN": {
     "Computers": {
-      "north": "Maths",
+      "north": "Math",
       "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class"
     },
-    "Maths": {
+    "Math": {
       "east": "Cafeteria",
-      "desc": "Mrs.Peterson's Maths class... omg I'm in trouble"
+      "desc": "Mrs.Peterson's Math class... omg I'm in trouble"
     },
     "Cafeteria": {
-      "west": "Maths",
+      "west": "Math",
       "east": "History",
-      "item": "Big Mac",
+      "item": "big mac",
       "desc": "Looks like there has been a food fight in the cafeteria.... You see something tasty on the ground"
     },
     "History": {
@@ -22,7 +22,8 @@
     "Hallway": {
       "south": "History",
       "north": "Geography",
-      "item": "Sharpened Pencil",
+      "west": "Mythology",
+      "item": "sharpened pencil",
       "desc": "Empty hallway with flicking lights... you saw someone move fast in the background."
     },
     "Geography": {
@@ -32,25 +33,38 @@
     },
     "Gym": {
       "east": "Geography",
+      "south": "Mythology",
       "desc": "Dodgeballs are on the floor...",
-      "item": "Dodgeball"
+      "item": "dodgeball"
+    },
+    "Mythology": {
+      "north": "Gym",
+      "east": "Hallway",
+      "desc": "You're in the Mythology class. Is this where they talk about the guy who flew too close to the sun and fell?"
     }
   },
   "SOPHOMORE":{
     "Computers": {
-      "north": "Maths",
+      "north": "Math",
+      "west": "Mythology",
       "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class"
     },
-    "Maths": {
+    "Mythology": {
+      "north": "Cafeteria",
+      "east": "Computers",
+      "desc": "You're in the Mythology class. Is this where they talk about the guy who flew too close to the sun and fell?"
+    },
+    "Math": {
       "west": "Cafeteria",
       "south": "Computers",
       "north": "Hallway",
-      "desc": "Mrs.Peterson's Maths class... omg I'm in trouble"
+      "desc": "Mrs.Peterson's Math class... omg I'm in trouble"
     },
     "Cafeteria": {
-      "east": "Maths",
+      "east": "Math",
       "north": "History",
-      "item": "Fire Extinguisher",
+      "south": "Mythology",
+      "item": "fire extinguisher",
       "desc": "Looks like there has been a food fight in the cafeteria.... You see something red on the ground"
     },
     "History": {
@@ -60,10 +74,10 @@
       "desc": "A pile of books sits in a corner... You see see the substitute teacher Mr.Korenick. He's heading toward you wanting to ask some questions"
     },
     "Hallway": {
-      "south": "Maths",
+      "south": "Math",
       "north": "Geography",
       "west": "History",
-      "item": "Redbull",
+      "item": "redbull",
       "desc": "Empty hallway with flicking lights... you saw someone move fast in the background."
     },
     "Geography": {
@@ -75,7 +89,7 @@
       "south": "History",
       "east": "Geography",
       "desc": "Dodgeballs are on the floor...",
-      "item": "Dodgeball"
+      "item": "dodgeball"
     }
   },
   "JUNIOR":{
@@ -84,29 +98,31 @@
       "desc": "Just a regular Geo class.... or is it... You get a tap on the shoulder... it's Mrs.Beaverwich"
     },
     "Hallway": {
+      "north": "Mythology",
       "east": "Gym",
       "south": "Cafeteria",
-      "item": "Redbull",
+      "item": "redbull",
       "desc": "Empty hallway with flicking lights... you saw someone move fast in the background. You may need to grab a weapon"
     },
     "Computers": {
       "south": "Gym",
+      "west": "Mythology",
       "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class"
     },
-    "Maths": {
+    "Math": {
       "south": "History",
       "north": "Cafeteria",
-      "desc": "Mrs.Peterson's Maths class... omg I'm in trouble"
+      "desc": "Mrs.Peterson's Math class... omg I'm in trouble"
     },
     "Cafeteria": {
-      "south": "Maths",
+      "south": "Math",
       "north": "Hallway",
-      "item": "Apple",
+      "item": "apple",
       "desc": "Looks like there has been a food fight in the cafeteria.... You see something shiny on the ground"
     },
     "History": {
       "west": "Geography",
-      "north": "Maths",
+      "north": "Math",
       "desc": "A pile of books sits in a corner... You see see the substitute teacher Mr.Korenick. He's heading toward you wanting to ask some questions"
     },
 
@@ -114,18 +130,24 @@
       "north": "Computers",
       "west": "Hallway",
       "desc": "Dodgeballs are on the floor...",
-      "item": "Dodgeball"
+      "item": "dodgeball"
+    },
+    "Mythology": {
+      "south": "Hallway",
+      "east": "Computers",
+      "desc": "You're in the Mythology class. Is this where they talk about the guy who flew too close to the sun and fell?"
     }
   },
   "SENIOR":{
-    "Maths": {
+    "Math": {
       "north": "Cafeteria",
-      "desc": "Mrs.Peterson's Maths class... omg I'm in trouble"
+      "desc": "Mrs.Peterson's Math class... omg I'm in trouble"
     },
     "Hallway": {
       "north": "History",
       "east": "Geography",
-      "item": "Exam Answers",
+      "south": "Mythology",
+      "item": "exam answers",
       "desc": "Empty hallway with flicking lights... you saw someone move fast in the background. There's a open locker"
     },
     "Computers": {
@@ -133,9 +155,10 @@
       "desc": "You are in a computer room, something tells you that you rather not be here. Also you get the feeling you are being watched. To the north is a Math class"
     },
     "Cafeteria": {
-      "south": "Maths",
+      "south": "Math",
+      "west": "Mythology",
       "north": "Geography",
-      "item": "Helmet",
+      "item": "helmet",
       "desc": "Looks like there has been a food fight in the cafeteria.... You see something tasty on the ground"
     },
     "History": {
@@ -154,7 +177,12 @@
       "south": "Geography",
       "north": "Computers",
       "desc": "Dodgeballs are on the floor...",
-      "item": "Dodgeball"
+      "item": "dodgeball"
+    },
+    "Mythology": {
+      "north": "Hallway",
+      "east": "Cafeteria",
+      "desc": "You're in the Mythology class. Is this where they talk about the guy who flew too close to the sun and fell?"
     }
   }
 }

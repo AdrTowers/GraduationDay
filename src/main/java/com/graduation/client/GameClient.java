@@ -9,10 +9,13 @@ import com.graduation.elements.Player;
 import com.graduation.pointsystem.PointSystem;
 import com.graduation.utils.Grade;
 import com.graduation.utils.Prompter;
+import com.graduation.utils.SoundEffects;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -48,55 +51,75 @@ public class GameClient {
         this.prompter = prompter;
     }
     public void initialize() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        player = setPlayer();
-        bully = setBully();
+        setPlayer();
+        setBully();
+
         //Step 1 -- Generate the location info from the json
         getLevelDetails("desc");
 
         //Step 2a -- Some conditional seeing if its is a subject
-        if(Player.getLocation().equals("cafeteria") || Player.getLocation().equals("gym") || Player.getLocation().equals("hallway")){
+        if(player.getLocation().equals("cafeteria") || player.getLocation().equals("gym") || player.getLocation().equals("hallway")){
             continueJourney(false);
         }else{
             //Step 2b -- Call method to initialize the question sequence
-            PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
+            PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
         }
+
+
     }
 
     public static void nextLocation(String location) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Grab the previous and read the location according to direction within it's JSON properties
-        try{
+        if(!player.getGrade().equals(Grade.GRADUATE)) {
+            try{
+                String nextLoc = prevRoom.get(location).textValue();
+                System.out.println(nextLoc);
+                player.setLocation(nextLoc);
+                getLevelDetails("desc");
+                updateHealthWhenInGym(nextLoc);
 
-            String nextLoc = prevRoom.get(location).textValue();
-            player.setLocation(nextLoc);
-            getLevelDetails("desc");
 
-            //Determine if it's a subject room
-            if(!notSubject.contains(nextLoc.toLowerCase())){
-                PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
-            }else{
-                //Step 1: random number generator to see if a bully will engage in combat
-                int combat = (int)(Math.random() * 100);
-                    //You have a 50% chance of a bully not being there.
-                if(combat >= 50){
-                    System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
-                    //Engage in combat
-                    GameCombat.initializeCombatScene();
+                //Determine if it's a subject room
+                if(!notSubject.contains(nextLoc.toLowerCase())){
+                    PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
                 }else {
-                    continueJourney(false);
+                    //Step 1: random number generator to see if a bully will engage in combat
+                    int combat = (int) (Math.random() * 100);
+                    //You have a 50% chance of a bully not being there.
+                    if (combat >= 60) {
+                        System.out.println(staticParser.getUhoh() + bully.getName() + staticParser.getIshere());
+                        //Engage in combat
+                        bully.setHealth(100);
+                        GameCombat.initializeCombatScene();
+                    } else {
+                        continueJourney(false);
+                    }
                 }
+                //Catch if the direction is null
+            }catch(NullPointerException e){
+                System.out.println(staticParser.getDifferent());
+                GameAction.getAction();
             }
-            //Catch if the direction is null
-        }catch(NullPointerException e){
-            System.out.println(staticParser.getDifferent());
-            GameAction.getAction();
+        }
+
+    }
+
+    /**
+     * Updates Health if the player is located in the gym
+     * @param location the current location of the player
+     */
+    public static void updateHealthWhenInGym(String location) {
+        if(location.equals("Gym")) {
+            System.out.println("Your health has now increased!");
+            player.setHealth(100);
         }
     }
 
     public static void getLevelDetails(String key) throws LineUnavailableException, UnsupportedAudioFileException {
         try{
             data = mapper.readTree(Files.readAllBytes(Paths.get("Banner/rooms.json")));
-            prevRoom = getLastRoom(data, Player.getLocation(), Player.getGrade());
-            JsonNode filteredData = getDetails(data, Player.getLocation(), Player.getGrade(), key);
+            prevRoom = getLastRoom(data, player.getLocation(), player.getGrade());
+            JsonNode filteredData = getDetails(data, player.getLocation(), player.getGrade(), key);
             if(key.equals("item")){
                 //If the room does have an item check if player already has it!
                 if(player.getInventory().contains(filteredData.asText())){
@@ -104,7 +127,7 @@ public class GameClient {
                     System.out.println(staticParser.getNoitems() + filteredData + "\n");
                     continueJourney(false);
                 }else{
-                    //Method to add the item to the player's bookbag
+                    //Method to add the item to the player's Book Bag
                     List<String> items = player.getInventory();
                     items.add(filteredData.textValue());
                     System.out.println(staticParser.getSuccessfull() + filteredData + staticParser.getBackpack());
@@ -122,13 +145,37 @@ public class GameClient {
     //Method to initialize the action to move
     public static void continueJourney(boolean val) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         //Have a conditional that switch when it's a new level
-        if(val){
-            getLevelDetails("desc");
-            PointSystem.teacherQuestions(Player.getLocation().toLowerCase(), Player.getGrade(),player);
-        }else{
-            System.out.println(staticParser.getNextmove());
-            GameAction.getAction();
+        if(player.getGrade().equals(Grade.GRADUATE)) {
+            playerDidGraduate();
+        } else {
+            if(val){
+                getLevelDetails("desc");
+                PointSystem.teacherQuestions(player.getLocation().toLowerCase(), player.getGrade());
+            }else{
+                System.out.println(staticParser.getNextmove());
+                GameAction.getAction();
+            }
         }
+
+    }
+
+    private static void playerDidGraduate() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        System.out.println("\n### Grade Report ###");
+        System.out.println("GPA Year");
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader("report_card.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("See you next year in...COLLEGE DAY!");
     }
 
     //Gets the description of the current room
@@ -146,7 +193,7 @@ public class GameClient {
             //Step 1: Read our JSON file
             data = mapper.readTree(Files.readAllBytes(Paths.get("Banner/rooms.json")));
             //Step 2: Access to my level
-            String node = String.valueOf(data.get(String.valueOf(Player.getGrade())));
+            String node = String.valueOf(data.get(String.valueOf(player.getGrade())));
             //Step 3: Spilt to get my location string
             String strNew = node.replace("{\"", "");
             String[] arrOfStr = strNew.split("\"", 2);
@@ -159,15 +206,47 @@ public class GameClient {
     }
 
     //Initialize the bully
-    public Bully setBully() {
-        String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
-        return new Bully(bullyName, 100, true);
+    public void setBully() {
+        bully = Bully.getInstance();
+        while (true){
+            String bullyName = prompter.prompt(textparser.getPlease(), textparser.getHole());
+            try{
+                if (bullyName == null || bullyName.isBlank()){
+                    System.out.println(textparser.getNameError());
+                } else {
+                    bully.setName(bullyName);
+                    System.out.println(textparser.getBullyName() + bullyName + "\n");
+                    break;
+                }
+            } catch (StringIndexOutOfBoundsException e){
+                System.out.println(textparser.getNameError());
+            }
+        }
+        bully.setHealth(100);
+        bully.setPresence(true);
     }
 
     //Initialize the player as a FRESHMAN aka first level
-    public Player setPlayer() {
-        String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
-        return new Player(userName, 0, 100, Grade.FRESHMAN, "Computers");
+    public void setPlayer() {
+        player = Player.getInstance();
+        while (true){
+            String userName = prompter.prompt(textparser.getEntername(), textparser.getTrashcan());
+            try{
+                if (userName == null || userName.isBlank()){
+                    System.out.println(textparser.getNameError());
+                } else {
+                    player.setName(userName);
+                    System.out.println(textparser.getYourName() + userName + "\n");
+                    break;
+                }
+            } catch (StringIndexOutOfBoundsException e){
+                System.out.println(textparser.getNameError());
+            }
+        }
+        player.setCredit(0);
+        player.setHealth(100);
+        player.setGrade(Grade.FRESHMAN);
+        player.setLocation("Computers");
     }
 
     public static Player getPlayer() {

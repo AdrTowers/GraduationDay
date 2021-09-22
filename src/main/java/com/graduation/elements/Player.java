@@ -6,13 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private static Grade grade;
-    private static String name;
-    private static double credit;
-    private static String location;
-    private static int health;
-    private static List<String> inventory = new ArrayList<>();
-    private static List<String> subjectTaken = new ArrayList<>();
+    private  static Player instance = null;
+    private  Grade grade;
+    private  String name;
+    private  double credit;
+    private  String location;
+    private  int health;
+    private  List<String> inventory = new ArrayList<>();
+    private  List<String> subjectTaken = new ArrayList<>();
+
+    // Constructor
+    private Player(){
+    }
+    // Singleton setup
+    public static Player getInstance(){
+        if ( instance == null){
+            instance = new Player();
+        }
+        return instance;
+    }
 
     public int getTotalSubject() {
         return totalSubject;
@@ -24,23 +36,13 @@ public class Player {
 
     private int totalSubject = 0;
 
-    public static List<String> getSubjectTaken() {
+    public  List<String> getSubjectTaken() {
         return subjectTaken;
     }
 
-    public static void setSubjectTaken(List<String> newSubjectTaken) {
+    public  void setSubjectTaken(List<String> newSubjectTaken) {
         subjectTaken = newSubjectTaken;
     }
-
-    public Player(String name, int credit, int health, Grade grade, String location){
-        this.name = name;
-        this.credit = credit;
-        this.health = health;
-        this.grade = grade;
-        this.location = location;
-        this.inventory = inventory;
-    }
-
 
     public void setCredit(double credit) {
         this.credit = credit;
@@ -58,31 +60,35 @@ public class Player {
         this.location = location;
     }
 
-    public static int setHealth(int health) {
-        return Player.health = health;
+    public  int setHealth(int health) {
+        return this.health = health;
     }
 
-    public static int getHealth() {
+    public  int getHealth() {
         return health;
     }
 
-    public static Grade getGrade() {
+    public  Grade getGrade() {
         return grade;
     }
 
-    public static String getLocation() {
+    public  String getLocation() {
         return location;
     }
 
-    public static double getCredit() {
+    public  double getCredit() {
         return credit;
     }
 
-    public static String getName() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public  String getName() {
         return name;
     }
 
-    public static List<String> getInventory() {
+    public  List<String> getInventory() {
         return inventory;
     }
 

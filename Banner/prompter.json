@@ -1,19 +1,21 @@
 {
-  "help":"\nHelp answering questions:\n",
+  "help":"\nHelp navigating the game:\n",
   "goNSEW":"Go - North, East, South, West.\n",
   "lookDisplay":"Look - Displays current room.\n",
   "cheat":"Cheat - Chance at obtaining the correct answer.\n",
   "getItem":"Get item - Adds item found in room to backpack.\n",
+  "mute": "Mute - Mutes game audio.\n",
+  "unmute": "Unmute - Un-mutes game audio.\n",
   "s":"S - Displays the subjects you've taken.\n",
   "q":"Q - Quit game.",
   "answerQuesitons":"\nHelp answering questions:\n",
   "multipleChoice":"For multiple choice questions enter A, B, C, or D.\n",
-  "forTF":"For true or false questions enter A for True or B for False.",
+  "forTF":"For True or False questions enter A, B, T, F, True or False.",
   "multiple":"For multiple choice questions enter A, B, C, or D.\n",
-  "tf":"For true or false questions enter A for True or B for False.",
   "save":"Do you want to save before exiting? (yes/no)",
   "look":"You take a look around.",
   "caught":"You have been caught and your answer is incorrect.",
   "taken":"You have already taken ",
-  "subejects": "Subjects Taken: "
+  "subejects": "Subjects Taken: ",
+  "inventory": "Backpack: "
 }
