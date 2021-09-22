@@ -129,15 +129,22 @@ public class Question {
                     return 0;
                 }
 
-                if (userChoice.matches("hint"))  { //quit
+                if (userChoice.matches("hint"))  { // Get hint
                     System.out.println(sample.getIncorrect_answers());
                 }
 
+                while (userChoice.isBlank()){
+                    System.out.println(textparser.getHelp());
+                    userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
+                    if (userChoice.matches("abcdtfABCDTF")){
+                        break;
+                    }
+                }
 
                 char chosen = userChoice.charAt(0);
                 //acceptable answer logic for multiple choice questions
                 if (answers.size() == 4) {
-                    while (userChoice.compareTo("") == 0 || !possible_answers.containsKey(userChoice.toUpperCase().charAt(0))) {
+                    while (userChoice.compareTo("") == 0 || !possible_answers.containsKey(userChoice.toUpperCase().charAt(0)) || userChoice.isEmpty()) {
                         System.out.println(textparser.getOptions() + Arrays.toString(possible_answers.keySet().toArray(new Character[0])));
                         userChoice = GameClient.getPrompter().prompt(":>").trim().toUpperCase();
                         if (userChoice.matches(textparser.getQuit())) {

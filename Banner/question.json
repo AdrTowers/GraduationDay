@@ -3,5 +3,6 @@
  "questions" :" questions answered correctly.\n",
  "incorrect" :"Incorrect: The correct answer is ",
  "quit" :"QUIT",
- "outof" :" out of "
+ "outof" :" out of ",
+ "help" : "Please enter a valid response. If you need help, enter 'H'."
 }

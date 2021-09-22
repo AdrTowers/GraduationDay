@@ -13,7 +13,6 @@ class PrompterParser {
     private String multipleChoice;
     private String forTF;
     private String multiple;
-    private String tf;
     private String save;
     private String look;
     private String caught;
@@ -65,10 +64,6 @@ class PrompterParser {
 
     public String getMultiple() {
         return multiple;
-    }
-
-    public String getTf() {
-        return tf;
     }
 
     public String getSave() {
